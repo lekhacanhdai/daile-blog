@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  database:
+    image: 'postgres:latest'
+    container_name: daile-blog
+    ports:
+      - 6543:5432
+    volumes:
+      - ./sql/:/opt/sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
