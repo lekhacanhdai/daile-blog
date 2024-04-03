@@ -1,6 +1,7 @@
 package com.blog.auth.service.impl;
 
 import com.blog.auth.domain.dto.MyUserDetail;
+import com.blog.auth.domain.repository.RoleRepository;
 import com.blog.auth.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,13 +21,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MyUserDetailService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var currentUser = userRepository.findByUsername(username).orElseThrow(() ->
                 new IllegalStateException(String.format("User not found with username: %s", username)));
+        var roles = roleRepository.findAllByUserId(currentUser.getUserId());
         var userDetail = new MyUserDetail(username,
                 currentUser.getPassword(),
-                currentUser.getRoles().stream()
+                roles.stream()
                         .map(g -> new SimpleGrantedAuthority(g.getRole()))
                         .collect(Collectors.toList()));
         userDetail.setEmail(currentUser.getEmail());
