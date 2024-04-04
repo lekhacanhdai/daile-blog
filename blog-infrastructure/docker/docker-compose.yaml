@@ -4,9 +4,34 @@ services:
     image: 'postgres:latest'
     container_name: daile-blog
     ports:
-      - 6543:5432
+      - "6543:5432"
     volumes:
-      - ./sql/:/opt/sql
+      - sql:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
+  blog-gateway:
+    image: anhdai0801/blog-gateway:latest
+    container_name: blog-gateway
+    ports:
+      - "9001:9001"
+    environment:
+      SERVER_PORT: 9001
+      ISSUER_URI: blog-auth
+      JWK_SET_URI: blog-auth/oauth2/jwks
+  blog-auth:
+    image: anhdai0801/blog-auth:latest
+    container_name: blog-auth
+    ports:
+      - "9000:9000"
+    environment:
+      DB_HOST: daile-blog
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: 123456
+      DB_SCHEMA: blogaccount
+    depends_on:
+      database:
+        condition: service_started
+volumes:
+  sql:

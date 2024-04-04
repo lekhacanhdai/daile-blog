@@ -25,7 +25,9 @@ public class SecurityConfig {
                 .hasAnyAuthority("ADMIN")
                 .anyRequest()
                 .permitAll())
-                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConvertor())));
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
+                        .jwtAuthenticationConverter(jwtAuthenticationConvertor()))
+                );
         return http.build();
     }
 
