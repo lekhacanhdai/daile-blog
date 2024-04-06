@@ -6,12 +6,16 @@ pipeline {
     stages {
         stage('Maven build') {
             steps {
-                 sh 'mvn -U clean install -Dmaven.test.skip=true -P server'
+                dir('blog-gateway'){
+                     sh 'mvn -U clean install -Dmaven.test.skip=true -P server'
+                }
             }
         }
         stage("Docker build") {
             steps {
-                sh 'docker build -t anhdai0801/blog-gateway:latest .'
+                dir('blog-gateway'){
+                    sh 'docker build -t anhdai0801/blog-gateway:latest .'
+                }
             }
         }
         stage("Docker push") {
