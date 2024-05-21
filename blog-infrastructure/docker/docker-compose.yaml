@@ -17,8 +17,8 @@ services:
       - "9001:9001"
     environment:
       SERVER_PORT: 9001
-      ISSUER_URI: blog-auth
-      JWK_SET_URI: blog-auth/oauth2/jwks
+      ISSUER_URI: http://blog-auth
+      JWK_SET_URI: http://blog-auth:9000/oauth2/jwks
   blog-auth:
     image: anhdai0801/blog-auth:latest
     container_name: blog-auth
