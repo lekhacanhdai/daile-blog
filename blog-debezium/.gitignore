@@ -22,6 +22,7 @@ target/
 ### NetBeans ###
 /debezium/
 blog-debezium.iml
+__pycache__
 
 ### VS Code ###
 .vscode/
