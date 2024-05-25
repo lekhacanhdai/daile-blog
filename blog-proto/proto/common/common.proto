@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package common;
+
+option java_package = "com.daile.blog.common";
+option java_multiple_files = true;
+
+
+enum Code {
+  CODE_UNKNOWN = 0;
+  CODE_SUCCESS = 1;
+  CODE_OBJECT_NOT_FOUND = 2;
+}
+
+message ErrorDetail {
+  string code = 1;
+  string message = 2;
+}
+
+message GrpcError {
+  Code code = 1;
+  string message = 2;
+  repeated ErrorDetail details = 3;
+}
+
+message IdResponse {
+  bool success = 1;
+  oneof response {
+    string id = 2;
+    GrpcError error = 3;
+  }
+}
+
+message IdRequest {
+  string id = 1;
+}
+
+message IdsRequest {
+  repeated string ids = 1;
+}
+
+message PageableRequest {
+  int32 page = 1;
+  int32 size = 2;
+  string sort = 3;
+  string direction = 4;
+}
+
+message PageableResponse {
+  int32 page = 1;
+  int32 size = 2;
+  int64 total_elements = 3;
+  int32 total_pages = 4;
+  bool ignore_page = 5;
+}
