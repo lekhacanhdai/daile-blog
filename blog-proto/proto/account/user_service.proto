@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package account;
+
+import "common/common.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option java_package = "com.daile.blog.account";
+option java_multiple_files = true;
+
+service UserGrpcService {
+  rpc UserRegistration(UserRegistrationRequest) returns (common.IdResponse) {};
+  rpc ListUser(ListUserRequest) returns (ListUserResponse) {};
+}
+
+message User {
+  string username = 1;
+  string email = 2;
+  string full_name = 3;
+  string status = 4;
+  string created_date = 5;
+  string role_id = 6;
+  string role = 7;
+}
+
+message UserRegistrationRequest {
+  string username = 1;
+  string password = 2;
+  string email = 3;
+  string full_name = 4;
+}
+
+message ListUserRequest {
+  common.PageableRequest pageable = 1;
+  string search_term = 2;
+}
+
+message ListUserResponse {
+  bool success = 1;
+  message Data {
+    repeated User users = 2;
+  }
+  oneof response {
+    Data data = 2;
+    common.GrpcError error = 3;
+  }
+}
