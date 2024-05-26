@@ -1,7 +1,7 @@
 from config import *
 
 class Connection:
-    def __init__(self, connection, dbname, schema, table):
+    def __init__(self, connection: str, dbname: str, schema: str, table: list):
         self.connection = connection
         self.dbname = dbname
         self.schema = schema
