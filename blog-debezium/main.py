@@ -9,7 +9,7 @@ list_conn = [account_conn]
 
 headers = {"Accept" : "application/json", "Content-Type" : "application/json"}
 
-list_connector = requests.get(config.DEBEZIUM_HOST + "/connectors", headers=headers)
+list_connector = requests.get(config.DEBEZIUM_HOST + "/connectors", headers=headers, timeout=5)
 
 exist_conn = json.loads(list_connector.text)
 

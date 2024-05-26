@@ -15,6 +15,7 @@
     <description>blog-account</description>
     <properties>
         <java.version>17</java.version>
+        <grpc.version>3.1.0.RELEASE</grpc.version>
     </properties>
     <dependencies>
         <dependency>
@@ -51,6 +52,21 @@
             <artifactId>blog-proto</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-client-spring-boot-starter</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-server-spring-boot-starter</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.blog.common</groupId>
+            <artifactId>blog-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -69,5 +85,22 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>server</id>
+            <properties>
+                <spring.profiles.active>server</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
