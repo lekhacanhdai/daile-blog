@@ -5,10 +5,14 @@ import com.blog.account.domain.entity.UserRoleEntity;
 import com.blog.account.domain.prefetch.PrefetchEntityProvider;
 import com.blog.account.domain.repository.UserRepository;
 import com.blog.account.domain.repository.UserRoleRepository;
+import com.blog.account.domain.repository.dsl.UserDslRepository;
+import com.blog.account.grpc.mapper.UserMapper;
 import com.blog.account.grpc.service.UserGrpcService;
 import com.blog.account.validator.UserValidator;
 import com.blog.common.enums.Role;
 import com.blog.common.enums.UserStatus;
+import com.blog.proto.exception.GrpcNotFoundException;
+import com.blog.proto.utils.PageableUtils;
 import com.daile.blog.account.GetUserByIdResponse;
 import com.daile.blog.account.ListUserRequest;
 import com.daile.blog.account.ListUserResponse;
@@ -17,6 +21,8 @@ import com.daile.blog.common.IdRequest;
 import com.daile.blog.common.IdResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 /**
  * @author daile
@@ -30,8 +36,10 @@ public class UserGrpcServiceImpl implements UserGrpcService {
 
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
+    private final UserDslRepository userDslRepository;
 
     private final PrefetchEntityProvider prefetchEntityProvider;
+    private final UserMapper userMapper;
 
     @Override
     public IdResponse createUser(UserRegistrationRequest request) {
@@ -63,11 +71,24 @@ public class UserGrpcServiceImpl implements UserGrpcService {
 
     @Override
     public ListUserResponse listUser(ListUserRequest request) {
-        return null;
+        var pageUser = userDslRepository.listUser(request);
+        return ListUserResponse.newBuilder()
+                .setSuccess(true)
+                .setData(ListUserResponse.Data.newBuilder()
+                        .addAllUsers(userMapper.toGrpc(pageUser.getItems()))
+                        .setPageable(PageableUtils.normalize(request.getPageable(), pageUser.getTotalElement()))
+                        .build())
+                .build();
     }
 
     @Override
     public GetUserByIdResponse getUserById(IdRequest request) {
-        return null;
+        var user = userRepository.findById(request.getId().transform(UUID::fromString))
+                .orElseThrow(() -> new GrpcNotFoundException("User not found with id " + request.getId()));
+        return GetUserByIdResponse.newBuilder()
+                .setData(GetUserByIdResponse.Data.newBuilder()
+                        .setUser(userMapper.toGrpc(user))
+                        .build())
+                .build();
     }
 }

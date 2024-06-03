@@ -24,6 +24,7 @@ public class GrpcServerUtils {
         } catch (Exception e) {
             exceptionHandler.apply(e);
             streamObserver.onCompleted();
+            throw e;
         }
     }
 

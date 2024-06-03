@@ -7,3 +7,7 @@ spring:
         jwt:
           issuer-uri: http://127.0.0.1:9000
           jwk-set-uri: http://127.0.0.1:9000/oauth2/jwks
+grpc:
+  account:
+    host: localhost
+    port: 9102

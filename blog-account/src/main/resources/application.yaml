@@ -1,3 +1,5 @@
 spring:
+  application:
+    name: blog-account
   profiles:
     active: '@activeProfile@'

@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -58,6 +59,7 @@ import java.util.stream.Collectors;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class AuthorizationServerConfig {
+    private final Environment environment;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     @Bean
@@ -151,7 +153,9 @@ public class AuthorizationServerConfig {
 
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
-        return AuthorizationServerSettings.builder().issuer("http://blog-auth").build();
+        return AuthorizationServerSettings.builder()
+                .issuer(environment.getRequiredProperty("app.issuer"))
+                .build();
     }
 
     @Bean

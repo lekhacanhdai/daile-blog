@@ -1,11 +1,10 @@
 package com.blog.account.domain.entity;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-import java.util.UUID;
 
 /**
  * @author daile
@@ -14,26 +13,27 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public abstract class CommonEntity {
+@MappedSuperclass
+public abstract class CommonEntity<T> {
     @Column(name = "created_date")
     private Timestamp createdDate;
 
     @Column(name = "created_by")
-    private UUID createdBy;
+    private T createdBy;
 
     @Column(name = "modified_date")
     private Timestamp modifiedDate;
 
     @Column(name = "modified_by")
-    private UUID modifiedBy;
+    private T modifiedBy;
 
-    public void preCreate(UUID userId){
-        createdBy = userId;
+    @PrePersist
+    public void preCreate(){
         createdDate = new Timestamp(System.currentTimeMillis());
     }
 
-    public void preModified(UUID userId){
-        modifiedBy = userId;
+    @PreUpdate
+    public void preModified(){
         modifiedDate = new Timestamp(System.currentTimeMillis());
     }
 }

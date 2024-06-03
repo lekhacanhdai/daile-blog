@@ -27,6 +27,7 @@ services:
     environment:
       DB_HOST: daile-blog
       DB_PORT: 5432
+      DB_NAME: BlogAccount
       DB_USER: postgres
       DB_PASSWORD: 123456
       DB_SCHEMA: blogaccount
@@ -78,7 +79,7 @@ services:
       retries: 10
   debezium:
     image: debezium/connect:latest
-    restart: always
+#    restart: always
     container_name: debezium
     hostname: debezium
     depends_on:
@@ -114,7 +115,7 @@ services:
       retries: 5
   debezium-ui:
     image: debezium/debezium-ui:latest
-    restart: always
+ #   restart: always
     container_name: debezium-ui
     hostname: debezium-ui
     depends_on:

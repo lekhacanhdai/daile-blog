@@ -23,6 +23,7 @@ message User {
   string created_date = 5;
   string role_id = 6;
   string role = 7;
+  string user_id = 8;
 }
 
 message UserRegistrationRequest {
@@ -40,7 +41,8 @@ message ListUserRequest {
 message ListUserResponse {
   bool success = 1;
   message Data {
-    repeated User users = 2;
+    repeated User users = 1;
+    common.PageableResponse pageable = 2;
   }
   oneof response {
     Data data = 2;
