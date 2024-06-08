@@ -10,7 +10,7 @@ option java_package = "com.daile.blog.account";
 option java_multiple_files = true;
 
 service UserGrpcService {
-  rpc UserRegistration(UserRegistrationRequest) returns (common.IdResponse) {};
+  rpc UserRegistration(UserRegistrationRequest) returns (UserRegistrationResponse) {};
   rpc ListUser(ListUserRequest) returns (ListUserResponse) {};
   rpc GetUserById(common.IdRequest) returns (GetUserByIdResponse) {};
 }
@@ -57,6 +57,14 @@ message GetUserByIdResponse {
   }
   oneof response {
     Data data = 2;
+    common.GrpcError error = 3;
+  }
+}
+
+message UserRegistrationResponse {
+  bool success = 1;
+  oneof response {
+    common.IdResponse data = 2;
     common.GrpcError error = 3;
   }
 }

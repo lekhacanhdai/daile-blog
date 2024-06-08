@@ -20,11 +20,11 @@ public class UserGrpcServer extends UserGrpcServiceGrpc.UserGrpcServiceImplBase 
     private final UserGrpcService userGrpcService;
 
     @Override
-    public void userRegistration(UserRegistrationRequest request, StreamObserver<IdResponse> responseObserver) {
+    public void userRegistration(UserRegistrationRequest request, StreamObserver<UserRegistrationResponse> responseObserver) {
         GrpcServerUtils.execute(request,
                 responseObserver,
                 userGrpcService::createUser,
-                (e) -> IdResponse.newBuilder()
+                (e) -> UserRegistrationResponse.newBuilder()
                         .setSuccess(false)
                         .setError(GrpcServerUtils.getError(e))
                         .build());

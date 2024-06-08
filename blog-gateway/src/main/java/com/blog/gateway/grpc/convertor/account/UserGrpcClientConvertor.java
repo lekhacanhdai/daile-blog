@@ -12,8 +12,8 @@ import java.util.UUID;
  * @since 02/06/2024
  */
 
-public class UserGrpcClientConvertor {
-    public static Response<Page<UserDTO>> asGrpcResponse(ListUserResponse.Data data) {
+public class UserGrpcClientConvertor extends BaseResponse {
+    public static Response<Page<UserDTO>> asSuccessResponse(ListUserResponse.Data data) {
         return Response.<Page<UserDTO>>newBuilder()
                 .setSuccess(true)
                 .setData(Page.<UserDTO>newBuilder()

@@ -23,5 +23,9 @@ class Connection:
             "database.dbname" : self.dbname, 
             "topic.prefix": self.schema, 
             "table.include.list": ", ".join(map(lambda tb: self.schema + '.' + tb, self.table)),
-            "plugin.name": "pgoutput"                   
+            "plugin.name": "pgoutput",
+            "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+            "key.converter.schemas.enable": "false",
+            "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+            "value.converter.schemas.enable": "false",
         }

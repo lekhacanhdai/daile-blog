@@ -14,22 +14,20 @@ import java.util.UUID;
  */
 
 @Entity
-@Table(name = "user_role")
+@Table(name = "cdc_account_roles")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRoleEntity {
+public class CdcRoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_role_id")
-    private UUID userRoleId;
+    @Column(name = "role_id")
+    private UUID roleId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private UserEntity user;
+    private String role;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
-    private RoleEntity role;
+    private String description;
+
+    private Integer status;
 }

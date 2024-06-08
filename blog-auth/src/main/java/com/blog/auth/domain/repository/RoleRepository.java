@@ -1,6 +1,6 @@
 package com.blog.auth.domain.repository;
 
-import com.blog.auth.domain.entity.RoleEntity;
+import com.blog.auth.domain.entity.CdcRoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,8 +15,8 @@ import java.util.UUID;
  */
 
 @Repository
-public interface RoleRepository extends JpaRepository<RoleEntity, UUID> {
-    @Query("SELECT r FROM RoleEntity r " +
-            "WHERE EXISTS (SELECT 1 FROM UserRoleEntity ur WHERE ur.role.roleId = r.roleId AND ur.user.userId = :userId)")
-    List<RoleEntity> findAllByUserId(@Param("userId") UUID userId);
+public interface RoleRepository extends JpaRepository<CdcRoleEntity, UUID> {
+    @Query("SELECT r FROM CdcRoleEntity r " +
+            "WHERE EXISTS (SELECT 1 FROM CdcUserRoleEntity ur WHERE ur.role.roleId = r.roleId AND ur.user.userId = :userId)")
+    List<CdcRoleEntity> findAllByUserId(@Param("userId") UUID userId);
 }

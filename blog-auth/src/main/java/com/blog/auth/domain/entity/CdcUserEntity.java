@@ -15,14 +15,13 @@ import java.util.UUID;
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "cdc_account_users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+public class CdcUserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private UUID userId;
 
@@ -39,9 +38,9 @@ public class UserEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "user_role",
+            name = "cdc_account_user_role",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private Set<RoleEntity> roles;
+    private Set<CdcRoleEntity> roles;
 }

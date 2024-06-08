@@ -2,7 +2,7 @@ package com.blog.account.validator.impl;
 
 import com.blog.account.validator.UserValidator;
 import com.daile.blog.account.UserRegistrationRequest;
-import com.daile.blog.common.IdResponse;
+import com.daile.blog.account.UserRegistrationResponse;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserValidatorImpl implements UserValidator {
     @Override
-    public boolean validateUserRegistration(UserRegistrationRequest request, IdResponse.Builder builder) {
+    public boolean validateUserRegistration(UserRegistrationRequest request, UserRegistrationResponse.Builder builder) {
         // TODO
         return true;
     }
