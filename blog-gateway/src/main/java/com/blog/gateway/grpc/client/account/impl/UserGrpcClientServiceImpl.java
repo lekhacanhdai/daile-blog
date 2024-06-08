@@ -6,6 +6,7 @@ import com.blog.gateway.payload.request.ListUserRequest;
 import com.blog.gateway.payload.request.UserRegistrationRequest;
 import com.daile.blog.account.ListUserResponse;
 import com.daile.blog.account.UserGrpcServiceGrpc;
+import com.daile.blog.account.UserRegistrationResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
