@@ -10,30 +10,30 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
-  blog-gateway:
-    image: anhdai0801/blog-gateway:latest
-    container_name: blog-gateway
-    ports:
-      - "9001:9001"
-    environment:
-      SERVER_PORT: 9001
-      ISSUER_URI: http://blog-auth
-      JWK_SET_URI: http://blog-auth:9000/oauth2/jwks
-  blog-auth:
-    image: anhdai0801/blog-auth:latest
-    container_name: blog-auth
-    ports:
-      - "9000:9000"
-    environment:
-      DB_HOST: daile-blog
-      DB_PORT: 5432
-      DB_NAME: BlogAccount
-      DB_USER: postgres
-      DB_PASSWORD: 123456
-      DB_SCHEMA: blogaccount
-    depends_on:
-      database:
-        condition: service_started
+#  blog-gateway:
+#    image: anhdai0801/blog-gateway:latest
+#    container_name: blog-gateway
+#    ports:
+#      - "9001:9001"
+#    environment:
+#      SERVER_PORT: 9001
+#      ISSUER_URI: http://blog-auth
+#      JWK_SET_URI: http://blog-auth:9000/oauth2/jwks
+#  blog-auth:
+#    image: anhdai0801/blog-auth:latest
+#    container_name: blog-auth
+#    ports:
+#      - "9000:9000"
+#    environment:
+#      DB_HOST: daile-blog
+#      DB_PORT: 5432
+#      DB_NAME: BlogAccount
+#      DB_USER: postgres
+#      DB_PASSWORD: 123456
+#      DB_SCHEMA: blogaccount
+#    depends_on:
+#      database:
+#        condition: service_started
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     hostname: zookeeper

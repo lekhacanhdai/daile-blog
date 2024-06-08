@@ -1,6 +1,6 @@
 package com.blog.auth.domain.repository;
 
-import com.blog.auth.domain.entity.UserRoleEntity;
+import com.blog.auth.domain.entity.CdcUserRoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +12,5 @@ import java.util.UUID;
  */
 
 @Repository
-public interface UserRoleRepository extends JpaRepository<UserRoleEntity, UUID> {
+public interface UserRoleRepository extends JpaRepository<CdcUserRoleEntity, UUID> {
 }

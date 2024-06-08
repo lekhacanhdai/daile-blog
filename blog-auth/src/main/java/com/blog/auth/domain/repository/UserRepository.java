@@ -1,6 +1,6 @@
 package com.blog.auth.domain.repository;
 
-import com.blog.auth.domain.entity.UserEntity;
+import com.blog.auth.domain.entity.CdcUserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,9 +14,9 @@ import java.util.UUID;
  */
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, UUID> {
-    @Query("SELECT u FROM UserEntity u " +
+public interface UserRepository extends JpaRepository<CdcUserEntity, UUID> {
+    @Query("SELECT u FROM CdcUserEntity u " +
             "LEFT JOIN FETCH u.roles " +
             "WHERE u.username = :username")
-    Optional<UserEntity> findByUsername(String username);
+    Optional<CdcUserEntity> findByUsername(String username);
 }

@@ -1,7 +1,9 @@
 package com.blog.gateway.grpc.client.account;
 
 import com.blog.gateway.payload.request.ListUserRequest;
+import com.blog.gateway.payload.request.UserRegistrationRequest;
 import com.daile.blog.account.ListUserResponse;
+import com.daile.blog.account.UserRegistrationResponse;
 
 /**
  * @author daile
@@ -10,4 +12,5 @@ import com.daile.blog.account.ListUserResponse;
 
 public interface UserGrpcClientService {
     ListUserResponse listUser(ListUserRequest request);
+    UserRegistrationResponse userRegistration(UserRegistrationRequest request);
 }

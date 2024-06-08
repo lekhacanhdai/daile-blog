@@ -1,21 +1,30 @@
 spring:
+  application:
+    name: blog-auth
   datasource:
-    url: jdbc:postgresql://localhost:6543/BlogAccount
+    url: jdbc:postgresql://localhost:6543/BlogAuth
     username: postgres
     password: 123456
     hikari:
-      schema: blogaccount
+      schema: blogauth
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        default_schema: blogaccount
+        default_schema: blogauth
     hibernate:
       ddl-auto: validate
     show-sql: true
     open-in-view: true
+  kafka:
+    bootstrap-servers: http://localhost:9092
+    consumer:
+      group-id: local-blog-daile
 server:
   port: 9000
 app:
-  issuer: http:/127.0.0.1:9000
+  issuer: http://127.0.0.1:9000
+logging:
+  level:
+    root: info

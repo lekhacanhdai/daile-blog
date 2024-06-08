@@ -13,14 +13,13 @@ import com.blog.common.enums.Role;
 import com.blog.common.enums.UserStatus;
 import com.blog.proto.exception.GrpcNotFoundException;
 import com.blog.proto.utils.PageableUtils;
-import com.daile.blog.account.GetUserByIdResponse;
-import com.daile.blog.account.ListUserRequest;
-import com.daile.blog.account.ListUserResponse;
-import com.daile.blog.account.UserRegistrationRequest;
+import com.daile.blog.account.*;
 import com.daile.blog.common.IdRequest;
 import com.daile.blog.common.IdResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -39,21 +38,22 @@ public class UserGrpcServiceImpl implements UserGrpcService {
     private final UserDslRepository userDslRepository;
 
     private final PrefetchEntityProvider prefetchEntityProvider;
+    private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
 
     @Override
-    public IdResponse createUser(UserRegistrationRequest request) {
-        var res = IdResponse.newBuilder();
+    @Transactional
+    public UserRegistrationResponse createUser(UserRegistrationRequest request) {
+        var res = UserRegistrationResponse.newBuilder();
         var validateSuccess = userValidator.validateUserRegistration(request, res);
-        if (validateSuccess){
+        if (!validateSuccess){
             return res.setSuccess(false)
                     .build();
         }
 
         UserEntity user = new UserEntity();
         user.setUsername(request.getUsername());
-        // TODO: encrypt password
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
         user.setStatus(UserStatus.ACTIVE.getId());
         user.setFullName(request.getFullName());
@@ -63,9 +63,11 @@ public class UserGrpcServiceImpl implements UserGrpcService {
         userRole.setRole(prefetchEntityProvider.getRoleMapName().get(Role.USER.name()));
         userRole.setUser(savedUser);
         userRoleRepository.save(userRole);
-        return IdResponse.newBuilder()
+        return UserRegistrationResponse.newBuilder()
                 .setSuccess(true)
-                .setId(savedUser.getUserId().toString())
+                .setData(IdResponse.newBuilder()
+                        .setId(savedUser.getUserId().toString())
+                        .build())
                 .build();
     }
 

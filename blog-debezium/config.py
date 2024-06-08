@@ -1,6 +1,6 @@
 from dotenv import dotenv_values
 
-config = dotenv_values(".env")
+config = dotenv_values(".local.env")
 
 DB_HOST = config['DB_HOST']
 DB_PORT = config['DB_PORT']

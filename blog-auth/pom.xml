@@ -15,6 +15,7 @@
     <description>blog-auth</description>
     <properties>
         <java.version>17</java.version>
+        <kafka.version>3.2.0</kafka.version>
     </properties>
     <dependencies>
         <dependency>
@@ -49,6 +50,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.blog.common</groupId>
+            <artifactId>blog-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
