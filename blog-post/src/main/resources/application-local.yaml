@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:6543/BlogBlog
+    username: postgres
+    password: 123456
+    hikari:
+      schema: blogblog
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: blogblog
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    open-in-view: true
+server:
+  port: 9003
+grpc:
+  server:
+    port: 9103
+
+logging:
+  level:
+    root: info

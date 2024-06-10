@@ -1,4 +1,4 @@
-package com.blog.gateway.grpc.convertor.account;
+package com.blog.gateway.grpc.convertor;
 
 import com.blog.gateway.payload.response.Error;
 import com.blog.gateway.payload.response.Response;

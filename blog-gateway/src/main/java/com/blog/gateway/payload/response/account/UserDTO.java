@@ -1,4 +1,4 @@
-package com.blog.gateway.payload.response;
+package com.blog.gateway.payload.response.account;
 
 import lombok.*;
 

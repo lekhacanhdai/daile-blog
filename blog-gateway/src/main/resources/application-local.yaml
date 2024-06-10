@@ -11,3 +11,6 @@ grpc:
   account:
     host: localhost
     port: 9102
+  post:
+    host: localhost
+    port: 9103

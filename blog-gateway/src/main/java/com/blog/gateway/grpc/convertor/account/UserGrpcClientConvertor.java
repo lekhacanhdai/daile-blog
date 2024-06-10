@@ -1,8 +1,9 @@
 package com.blog.gateway.grpc.convertor.account;
 
+import com.blog.gateway.grpc.convertor.BaseResponse;
 import com.blog.gateway.payload.response.Page;
 import com.blog.gateway.payload.response.Response;
-import com.blog.gateway.payload.response.UserDTO;
+import com.blog.gateway.payload.response.account.UserDTO;
 import com.daile.blog.account.ListUserResponse;
 
 import java.util.UUID;
