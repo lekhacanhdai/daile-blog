@@ -1,11 +1,12 @@
 package com.blog.gateway.controller.accounts;
 
 import com.blog.gateway.grpc.client.account.UserGrpcClientService;
-import com.blog.gateway.grpc.convertor.account.ErrorConvertor;
+import com.blog.gateway.grpc.convertor.ErrorConvertor;
 import com.blog.gateway.grpc.convertor.account.UserGrpcClientConvertor;
-import com.blog.gateway.payload.request.ListUserRequest;
-import com.blog.gateway.payload.request.UserRegistrationRequest;
+import com.blog.gateway.payload.request.account.ListUserRequest;
+import com.blog.gateway.payload.request.account.UserRegistrationRequest;
 import com.blog.gateway.payload.response.*;
+import com.blog.gateway.payload.response.account.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;

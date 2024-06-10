@@ -1,5 +1,6 @@
-package com.blog.gateway.payload.request;
+package com.blog.gateway.payload.request.account;
 
+import com.blog.gateway.payload.request.PageableRequest;
 import lombok.*;
 
 /**
@@ -12,6 +13,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(setterPrefix = "set", builderMethodName = "newBuilder")
-public class ListUserRequest extends PageableRequest{
+public class ListUserRequest extends PageableRequest {
     private String searchTerm;
 }

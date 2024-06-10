@@ -2,8 +2,8 @@ package com.blog.gateway.grpc.client.account.impl;
 
 import com.blog.gateway.grpc.client.account.UserGrpcClientService;
 import com.blog.gateway.grpc.utils.PageUtils;
-import com.blog.gateway.payload.request.ListUserRequest;
-import com.blog.gateway.payload.request.UserRegistrationRequest;
+import com.blog.gateway.payload.request.account.ListUserRequest;
+import com.blog.gateway.payload.request.account.UserRegistrationRequest;
 import com.daile.blog.account.ListUserResponse;
 import com.daile.blog.account.UserGrpcServiceGrpc;
 import com.daile.blog.account.UserRegistrationResponse;
@@ -31,7 +31,8 @@ public class UserGrpcClientServiceImpl implements UserGrpcClientService {
 
     @Override
     public UserRegistrationResponse userRegistration(UserRegistrationRequest request) {
-        return userGrpcServiceBlockingStub.userRegistration(com.daile.blog.account.UserRegistrationRequest.newBuilder()
+        return userGrpcServiceBlockingStub
+                .userRegistration(com.daile.blog.account.UserRegistrationRequest.newBuilder()
                         .setEmail(request.getEmail())
                         .setPassword(request.getPassword())
                         .setFullName(request.getFullName())

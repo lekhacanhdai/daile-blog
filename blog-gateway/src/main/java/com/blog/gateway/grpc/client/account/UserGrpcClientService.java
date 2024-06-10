@@ -1,7 +1,7 @@
 package com.blog.gateway.grpc.client.account;
 
-import com.blog.gateway.payload.request.ListUserRequest;
-import com.blog.gateway.payload.request.UserRegistrationRequest;
+import com.blog.gateway.payload.request.account.ListUserRequest;
+import com.blog.gateway.payload.request.account.UserRegistrationRequest;
 import com.daile.blog.account.ListUserResponse;
 import com.daile.blog.account.UserRegistrationResponse;
 

@@ -1,4 +1,4 @@
-package com.blog.gateway.payload.request;
+package com.blog.gateway.payload.request.account;
 
 import lombok.Builder;
 import lombok.Data;

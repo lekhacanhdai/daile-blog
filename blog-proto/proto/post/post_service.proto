@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package account;
+
+import "common/common.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option java_package = "com.daile.blog.post";
+option java_multiple_files = true;
+
+service PostGrpcService {
+  rpc CreatePost(MCreatePostRequest) returns (MCreatePostResponse) {};
+  rpc ListPost(MListPostRequest) returns (MListPostResponse) {};
+  rpc GetPostById(common.IdRequest) returns (MGetPostByIdResponse) {};
+}
+
+message MCreatePostRequest {
+  string title = 1;
+  string content = 2;
+  string status = 3;
+  repeated string tag_ids = 4;
+}
+
+message MCreatePostResponse {
+  bool success = 1;
+  oneof response {
+    common.IdResponse data = 2;
+    common.GrpcError error = 3;
+  }
+}
+
+message MPost {
+  string post_id = 1;
+  string title = 2;
+  string content = 3;
+  string user_id = 4;
+  string full_name = 5;
+  string status = 6;
+  repeated MTags tags = 7;
+}
+
+message MTags {
+  string tag_id = 1;
+  string tag_name = 2;
+  string description = 3;
+}
+
+message MListPostRequest {
+  common.PageableRequest pageable = 1;
+  string search_term = 2;
+  string user_id = 3;
+  repeated string tag_ids = 4;
+}
+
+message MListPostResponse {
+  bool success = 1;
+
+  message Data {
+    repeated MPost posts = 1;
+    common.PageableResponse pageable = 2;
+  }
+
+  oneof response {
+    Data data = 2;
+    common.GrpcError error = 3;
+  }
+}
+
+message MGetPostByIdResponse {
+  bool success = 1;
+  message Data {
+    MPost post = 1;
+  }
+  oneof response {
+    Data data = 2;
+    common.GrpcError error = 3;
+  }
+}
