@@ -21,7 +21,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class CdcRoleEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
     private UUID roleId;
 
