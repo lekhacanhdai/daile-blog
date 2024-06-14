@@ -7,7 +7,10 @@ import com.blog.gateway.payload.request.post.ListPostRequest;
 import com.daile.blog.common.IdRequest;
 import com.daile.blog.post.*;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 /**
  * @author daile
@@ -22,9 +25,9 @@ public class PostGrpcClientServiceImpl implements PostGrpcClientService {
     public MListPostResponse listPost(ListPostRequest request) {
         return postGrpcServiceBlockingStub.listPost(MListPostRequest.newBuilder()
                         .setPageable(PageUtils.toGrpcPageable(request))
-                        .setSearchTerm(request.getSearchTerm())
-                        .setUserId(request.getUserId())
-                        .addAllTagIds(request.getTagIds())
+                        .setSearchTerm(StringUtils.defaultString(request.getSearchTerm()))
+                        .setUserId(StringUtils.defaultString(request.getUserId()))
+                        .addAllTagIds(request.getTagIds() != null ? request.getTagIds() : new ArrayList<>())
                 .build());
     }
 
