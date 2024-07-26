@@ -12,6 +12,7 @@ pipeline {
             steps {
                 dir('blog-gateway'){
                      sh 'mvn -U clean install -Dmaven.test.skip=true -P server'
+
                 }
             }
         }
