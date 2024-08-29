@@ -3,6 +3,7 @@ package com.blog.gateway.grpc.convertor;
 import com.blog.gateway.payload.response.IdDTO;
 import com.blog.gateway.payload.response.Response;
 import com.daile.blog.common.IdResponse;
+import com.daile.blog.common.NoContentResponse;
 
 /**
  * @author daile
@@ -15,6 +16,12 @@ public abstract class BaseResponse {
                 .setData(IdDTO.builder()
                         .id(response.getId())
                         .build())
+                .build();
+    }
+
+    public static Response<com.blog.gateway.payload.response.NoContentResponse> asSuccessResponse(NoContentResponse response) {
+        return Response.<com.blog.gateway.payload.response.NoContentResponse>newBuilder()
+                .setSuccess(true)
                 .build();
     }
 }

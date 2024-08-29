@@ -4,6 +4,8 @@ import com.blog.gateway.grpc.client.post.PostGrpcClientService;
 import com.blog.gateway.grpc.utils.PageUtils;
 import com.blog.gateway.payload.request.post.CreatePostRequest;
 import com.blog.gateway.payload.request.post.ListPostRequest;
+import com.blog.gateway.utils.SecurityUtils;
+import com.blog.proto.security.BlogPrincipalProvider;
 import com.daile.blog.common.IdRequest;
 import com.daile.blog.post.*;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +25,8 @@ public class PostGrpcClientServiceImpl implements PostGrpcClientService {
     private final PostGrpcServiceGrpc.PostGrpcServiceBlockingStub postGrpcServiceBlockingStub;
     @Override
     public MListPostResponse listPost(ListPostRequest request) {
-        return postGrpcServiceBlockingStub.listPost(MListPostRequest.newBuilder()
+        return postGrpcServiceBlockingStub
+                .listPost(MListPostRequest.newBuilder()
                         .setPageable(PageUtils.toGrpcPageable(request))
                         .setSearchTerm(StringUtils.defaultString(request.getSearchTerm()))
                         .setUserId(StringUtils.defaultString(request.getUserId()))
@@ -33,7 +36,9 @@ public class PostGrpcClientServiceImpl implements PostGrpcClientService {
 
     @Override
     public MCreatePostResponse createPost(CreatePostRequest request) {
-        return postGrpcServiceBlockingStub.createPost(MCreatePostRequest.newBuilder()
+        return postGrpcServiceBlockingStub
+                .withCallCredentials(BlogPrincipalProvider.asGrpcCredentials(SecurityUtils.getPrincipal()))
+                .createPost(MCreatePostRequest.newBuilder()
                         .setContent(request.getContent())
                         .setStatus(request.getStatus())
                         .setTitle(request.getTitle())

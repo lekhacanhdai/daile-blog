@@ -23,7 +23,8 @@ public class UserGrpcClientServiceImpl implements UserGrpcClientService {
 
     @Override
     public ListUserResponse listUser(ListUserRequest request) {
-        return userGrpcServiceBlockingStub.listUser(com.daile.blog.account.ListUserRequest.newBuilder()
+        return userGrpcServiceBlockingStub
+                .listUser(com.daile.blog.account.ListUserRequest.newBuilder()
                         .setSearchTerm(StringUtils.defaultString(request.getSearchTerm()))
                         .setPageable(PageUtils.toGrpcPageable(request))
                 .build());

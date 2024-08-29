@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package common;
-
+import "google/protobuf/empty.proto";
 option java_package = "com.daile.blog.common";
 option java_multiple_files = true;
 
@@ -31,6 +31,14 @@ message IdResponse {
   }
 }
 
+message NoContentResponse {
+  bool success = 1;
+  oneof response {
+    Empty empty = 2;
+    GrpcError error = 3;
+  }
+}
+
 message IdRequest {
   string id = 1;
 }
@@ -53,3 +61,5 @@ message PageableResponse {
   int64 total_elements = 3;
   int64 total_pages = 4;
 }
+
+message Empty {}

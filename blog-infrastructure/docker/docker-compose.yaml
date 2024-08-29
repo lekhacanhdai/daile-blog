@@ -158,12 +158,25 @@ services:
                 url: "http://schema-registry:8081"
 
     ports:
-      - 8082:8080
+      - '8082:8080'
     links:
       - broker
       - schema-registry
-
+  minio:
+    image: quay.io/minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=anhdai0801
+      - MINIO_ROOT_PASSWORD=lekhacanhdai
+    volumes:
+      - minio_data:/data
+    ports:
+      - '7000:9000'
+      - '7001:9001'
 volumes:
   sql:
+    driver: local
+  minio_data:
+    driver: local
 networks:
   daile-blog:

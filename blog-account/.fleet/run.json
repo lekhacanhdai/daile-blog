@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Build",
+            "type": "maven",
+            "workingDir": "$PROJECT_DIR$",
+            "tasks": ["clean", "install"]
+        },
+        {
+            "name": "BlogAccountApplication",
+            "type": "spring-boot",
+            "workingDir": "$PROJECT_DIR$",
+            "dependsOn": ["Build"],
+            "mainClass": "com.blog.account.BlogAccountApplication",
+            "module": "blog-account",
+            "activeProfiles": ["local"]
+        }
+        
+    ]
+}

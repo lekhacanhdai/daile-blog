@@ -1,5 +1,6 @@
 package com.blog.auth.config;
 
+import com.blog.auth.domain.entity.CdcUserEntity;
 import com.blog.auth.domain.repository.RoleRepository;
 import com.blog.auth.domain.repository.UserRepository;
 import com.blog.auth.service.impl.MyUserDetailService;
@@ -26,6 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.authorization.OAuth2TokenType;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
@@ -167,6 +169,8 @@ public class AuthorizationServerConfig {
                             .stream()
                             .map(c -> c.replaceFirst("^ROLE_", ""))
                             .collect(Collectors.collectingAndThen(Collectors.toSet(), Collections::unmodifiableSet));
+                    var loginUser = userRepository.findByUsername(claims.get(JwtClaimNames.SUB).toString()).orElse(new CdcUserEntity());
+                    claims.put("user_id", loginUser.getUserId());
                     claims.put("roles", roles);
                 });
             }

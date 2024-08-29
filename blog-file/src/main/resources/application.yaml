@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: blog-file
+server:
+  port: 9009
+grpc:
+  server:
+    port: 9109
+minio:
+  url: http://localhost:7000
+  access:
+    name: HgUl4fwElrkbTtMSEgd1
+    secret: 684XmqJSZ3xisF5jJ3VlZhAF4N5P3AVYizauruip
+  bucket:
+    name: daie-blog
+
+
+logging:
+  level:
+    root: info

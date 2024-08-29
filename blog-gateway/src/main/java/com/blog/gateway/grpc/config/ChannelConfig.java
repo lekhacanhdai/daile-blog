@@ -32,4 +32,12 @@ public class ChannelConfig {
                 environment.getRequiredProperty("grpc.post.port", Integer.class)
         ).usePlaintext().build();
     }
+
+    @Bean("FileGrpcChannel")
+    public ManagedChannel fileGrpcChannel() {
+        return ManagedChannelBuilder.forAddress(
+                environment.getRequiredProperty("grpc.file.host", String.class),
+                environment.getRequiredProperty("grpc.file.port", Integer.class)
+        ).usePlaintext().build();
+    }
 }
