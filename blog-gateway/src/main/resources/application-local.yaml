@@ -14,3 +14,6 @@ grpc:
   post:
     host: localhost
     port: 9103
+  file:
+    host: localhost
+    port: 9109

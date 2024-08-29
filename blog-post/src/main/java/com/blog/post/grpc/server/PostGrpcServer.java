@@ -1,6 +1,7 @@
 package com.blog.post.grpc.server;
 
 import com.blog.post.grpc.service.PostGrpcService;
+import com.blog.proto.security.AuthorizationServerInterceptor;
 import com.blog.proto.utils.GrpcServerUtils;
 import com.daile.blog.common.IdRequest;
 import com.daile.blog.post.*;
@@ -13,7 +14,7 @@ import net.devh.boot.grpc.server.service.GrpcService;
  * @since 10/06/2024
  */
 
-@GrpcService
+@GrpcService(interceptors = AuthorizationServerInterceptor.class)
 @RequiredArgsConstructor
 public class PostGrpcServer extends PostGrpcServiceGrpc.PostGrpcServiceImplBase {
     private final PostGrpcService postGrpcService;

@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java-source-run",
+            "name": "Java-source-run configuration",
+            "sourceFile": "blog-account/src/main/java/com/blog/account/BlogAccountApplication.java",
+        },
+        
+    ]
+}
