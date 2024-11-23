@@ -1,7 +1,5 @@
 name: Publish package to GitHub Packages
-on:
-  release:
-    types: [created]
+on: push
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -12,11 +10,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
       - name: Publish package
         run: |
           cd blog-common
+          mvn --batch-mode deploy
+          cd ../blog-proto
           mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
