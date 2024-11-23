@@ -15,6 +15,9 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
       - name: Publish package
-        run: mvn --batch-mode deploy
+      
+        run: |
+          cd blog-common  # Di chuyển vào thư mục con
+          mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
