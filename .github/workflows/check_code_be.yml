@@ -33,6 +33,8 @@ jobs:
           mvn clean install --batch-mode
           cd ../blog-account
           mvn clean install --batch-mode
+          cd ../blog-auth
+          mvn clean install --batch-mode
           cd ../blog-file
           mvn clean install --batch-mode
           cd ../blog-post
