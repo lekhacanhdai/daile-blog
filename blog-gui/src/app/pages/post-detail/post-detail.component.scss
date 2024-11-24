@@ -1,0 +1,40 @@
+.dlb-post-detail {
+  margin: 60px 0;
+  display: flex;
+  justify-content: center;
+  &__content {
+    width: 820px;
+    &__title {
+
+    }
+
+    &__author {
+      margin: 20px 0;
+      color: #5e6568;
+
+      &__name {
+
+      }
+
+      &--hyphen {
+        margin: 0 6px;
+      }
+    }
+
+    &__detail {
+      margin-bottom: 80px;
+    }
+
+    &__tag {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      &__item {
+        margin: 0 8px;
+        padding: 10px;
+        border-radius: 100px;
+        background-color: #F2F2F2;;
+      }
+    }
+  }
+}

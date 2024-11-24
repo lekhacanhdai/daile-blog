@@ -1,0 +1,22 @@
+<div>
+  <div class="main-container">
+    <div class="dlb-new-post__title">
+      <textarea
+        class="dlb-new-post__title__text"
+        placeholder="Title" [(ngModel)]="title"
+        [rows]="numRows"
+        (input)="autoExpand($event)"
+      ></textarea>
+    </div>
+    <div class="editor-container editor-container_classic-editor editor-container_include-style" #editorContainerElement>
+      <div class="editor-container__editor">
+        <div #editorElement>
+          <ckeditor (change)="onChange($event)" [editor]="Editor" [config]="config" *ngIf="isLayoutReady" />
+        </div>
+      </div>
+      <div class="dlb-new-post__action">
+        <button class="dlb-new-post__action__save" mat-flat-button (click)="savePost()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

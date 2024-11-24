@@ -1,0 +1,20 @@
+.dlb-input {
+  margin: 10px 0;
+  width: 820px;
+  &__content {
+    width: 100%;
+    font-size: 40px;
+    line-height: 40px;
+    margin: 0;
+    &:focus-visible {
+      outline-width: 0;
+    }
+    &:empty::before {
+      content: attr(data-placeholder);
+      color: #aaa;
+    }
+    &:focus {
+      background-color: red;
+    }
+  }
+}
