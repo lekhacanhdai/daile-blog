@@ -7,3 +7,13 @@ spring:
         jwt:
           issuer-uri: ${ISSUER_URI}
           jwk-set-uri: ${JWK_SET_URI}
+grpc:
+  account:
+    host: ${ACCOUNT_HOST}
+    port: ${ACCOUNT_PORT}
+  post:
+    host: ${POST_HOST}
+    port: ${POST_PORT}
+  file:
+    host: ${FILE_HOST}
+    port: ${FILE_PORT}

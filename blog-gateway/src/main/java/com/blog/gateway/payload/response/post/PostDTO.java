@@ -21,5 +21,6 @@ public class PostDTO {
     private String userId;
     private String fullName;
     private String status;
+    private String publishedDate;
     private List<TagDTO> tags;
 }

@@ -7,10 +7,12 @@ import com.blog.post.domain.entity.PostTagEntity;
 import com.blog.proto.mapper.GrpcMapper;
 import com.daile.blog.post.MPost;
 import com.daile.blog.post.MTags;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -37,7 +39,7 @@ public class PostGrpcMapper extends GrpcMapper<PostEntity, MPost, MPost.Builder>
 
     public MPost toGrpc(PostEntity input, CdcUserEntity userEntity) {
         return toGrpcBuilder(input)
-                .setFullName(userEntity.getFullName())
+                .setFullName(Objects.nonNull(userEntity) ? StringUtils.defaultString(userEntity.getFullName()) : "")
                 .build();
     }
 
@@ -49,7 +51,6 @@ public class PostGrpcMapper extends GrpcMapper<PostEntity, MPost, MPost.Builder>
 
     public MPost toGrpc(PostEntity input, CdcUserEntity user, List<PostTagEntity> postTag) {
         return toGrpcBuilder(input)
-                .setFullName(user.getFullName())
                 .addAllTags(postTag.stream()
                         .map(pt -> MTags.newBuilder()
                                 .setTagName(pt.getTag().getName())

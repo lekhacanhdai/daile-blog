@@ -14,7 +14,7 @@ import java.util.UUID;
  */
 
 @Entity
-@Table(name = "cdc_account_user_role")
+@Table(name = "user_role")
 @Getter
 @Setter
 @AllArgsConstructor

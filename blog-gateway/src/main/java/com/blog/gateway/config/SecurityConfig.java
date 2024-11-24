@@ -23,9 +23,19 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable) // TODO: research csrf
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/public")
+                        .requestMatchers(HttpMethod.GET,
+                                "/**"
+//                                "/public/**",
+//                                "/swagger-ui/**",
+//                                "/v3/api-docs/**",
+//                                "/v3/api-docs.yaml"
+                        )
                         .permitAll()
-                        .requestMatchers(HttpMethod.POST, "/users/registration", "/files")
+                        .requestMatchers(HttpMethod.POST,
+                                "/**",
+                                "/posts"
+//                                "/files"
+                        )
                         .permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer

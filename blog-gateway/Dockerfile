@@ -1,3 +1,4 @@
 FROM openjdk:17
-COPY /target/blog-gateway-0.0.1-SNAPSHOT.jar blog-gateway-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-Dspring.profiles.active=server", "-jar", "blog-gateway-0.0.1-SNAPSHOT.jar"]
+COPY /target/blog-gateway-1.0.0.jar blog-gateway-1.0.0.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-Dspring.profiles.active=server", "-jar", "blog-gateway-1.0.0.jar"]

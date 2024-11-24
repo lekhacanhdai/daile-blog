@@ -1,6 +1,6 @@
 package com.blog.gateway.grpc.client.file;
 
-import com.daile.blog.common.NoContentResponse;
+import com.daile.blog.file.UploadFileResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -8,5 +8,5 @@ import org.springframework.web.multipart.MultipartFile;
  * @since 28/08/2024
  */
 public interface FileGrpcClientService {
-    NoContentResponse uploadFile(MultipartFile file);
+    UploadFileResponse uploadFile(MultipartFile file);
 }

@@ -15,7 +15,14 @@ spring:
       ddl-auto: validate
     show-sql: true
     open-in-view: true
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST}:${KAFKA_PORT}
+    consumer:
+      group-id: ${CONSUMER_GROUP}
 server:
-  port: 9000
+  port: ${SERVER_PORT}
 app:
-  issuer: http://blog-auth
+  issuer: ${ISSUER_URI}
+logging:
+  level:
+    root: info

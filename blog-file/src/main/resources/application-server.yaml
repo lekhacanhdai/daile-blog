@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: blog-file
+server:
+  port: ${SERVER_PORT}
+grpc:
+  server:
+    port: ${GRPC_PORT}
+minio:
+  url: ${MINIO_URL}
+  access:
+    name: ${ACCESS_KEY}
+    secret: ${SECRET_KEY}
+  bucket:
+    name: ${BUCKET_NAME}
+logging:
+  level:
+    root: info

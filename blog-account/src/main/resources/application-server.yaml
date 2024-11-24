@@ -16,4 +16,7 @@ spring:
     show-sql: true
     open-in-view: true
 server:
-  port: 9000
+  port: ${SERVER_PORT}
+grpc:
+  server:
+    port: ${GRPC_PORT}

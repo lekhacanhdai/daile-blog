@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 
 @Entity
-@Table(name = "cdc_account_users")
+@Table(name = "users")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -38,7 +38,7 @@ public class CdcUserEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "cdc_account_user_role",
+            name = "user_role",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )

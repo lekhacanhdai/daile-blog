@@ -1,9 +1,9 @@
 package com.blog.gateway.grpc.client.file.impl;
 
 import com.blog.gateway.grpc.client.file.FileGrpcClientService;
-import com.daile.blog.common.NoContentResponse;
 import com.daile.blog.file.FileServiceGrpc;
 import com.daile.blog.file.UploadFileRequest;
+import com.daile.blog.file.UploadFileResponse;
 import com.google.protobuf.ByteString;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import java.io.IOException;
 public class FileGrpcClientServiceImpl implements FileGrpcClientService {
     private final FileServiceGrpc.FileServiceBlockingStub fileServiceBlockingStub;
     @Override
-    public NoContentResponse uploadFile(MultipartFile file) {
+    public UploadFileResponse uploadFile(MultipartFile file) {
         ByteString fileData;
         try {
             fileData = ByteString.copyFrom(file.getBytes());
@@ -29,7 +29,7 @@ public class FileGrpcClientServiceImpl implements FileGrpcClientService {
             throw new RuntimeException("Failed to convert file to byte array", e);
         }
         return fileServiceBlockingStub.uploadFile(UploadFileRequest.newBuilder()
-                        .setFileName(file.getName())
+                        .setFileName(file.getOriginalFilename())
                         .setContentType(file.getContentType())
                         .setData(fileData)
                 .build());

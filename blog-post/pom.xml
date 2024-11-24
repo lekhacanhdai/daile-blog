@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.blog</groupId>
     <artifactId>blog-post</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>blog-post</name>
     <description>blog-post</description>
     <properties>
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>com.blog</groupId>
             <artifactId>blog-proto</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>net.devh</groupId>
@@ -65,9 +65,9 @@
             <version>${grpc.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.blog.common</groupId>
+            <groupId>com.blog</groupId>
             <artifactId>blog-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.querydsl</groupId>

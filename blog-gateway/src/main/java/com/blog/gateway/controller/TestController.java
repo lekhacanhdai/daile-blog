@@ -20,7 +20,7 @@ public class TestController {
     }
     
     @GetMapping("private")
-    @Secured("ADMIN")
+    @Secured({"ADMIN", "USER"})
     public ResponseEntity<?> privateAPI(){
         return ResponseEntity.ok(Map.of("success", true));
     }
