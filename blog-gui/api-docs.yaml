@@ -1,0 +1,354 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: https://api.daile.tech
+  description: Generated server url
+paths:
+  /users/registration:
+    post:
+      tags:
+      - user-controller
+      operationId: userRegistration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistrationRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseIdDTO'
+  /posts:
+    get:
+      tags:
+      - post-controller
+      operationId: listPost
+      parameters:
+      - name: request
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/ListPostRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponsePagePostDTO'
+    post:
+      tags:
+      - post-controller
+      operationId: createPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePostRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseIdDTO'
+  /files:
+    post:
+      tags:
+      - file-controller
+      operationId: uploadFile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseNoContentResponse'
+  /users:
+    get:
+      tags:
+      - user-controller
+      operationId: listUser
+      parameters:
+      - name: request
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/ListUserRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponsePageUserDTO'
+  /public:
+    get:
+      tags:
+      - test-controller
+      operationId: publicAPI
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /private:
+    get:
+      tags:
+      - test-controller
+      operationId: privateAPI
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /posts/{id}:
+    get:
+      tags:
+      - post-controller
+      operationId: getPostById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponsePostDTO'
+components:
+  schemas:
+    UserRegistrationRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        fullName:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    ErrorDetail:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    IdDTO:
+      type: object
+      properties:
+        id:
+          type: string
+    ResponseIdDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/IdDTO'
+        message:
+          type: string
+        error:
+          $ref: '#/components/schemas/Error'
+    CreatePostRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        status:
+          type: string
+        tagIds:
+          type: array
+          items:
+            type: string
+    NoContentResponse:
+      type: object
+    ResponseNoContentResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/NoContentResponse'
+        message:
+          type: string
+        error:
+          $ref: '#/components/schemas/Error'
+    ListUserRequest:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        sort:
+          type: string
+        direction:
+          type: string
+        ignorePage:
+          type: boolean
+        searchTerm:
+          type: string
+    PageUserDTO:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDTO'
+        totalElement:
+          type: integer
+          format: int64
+        totalPage:
+          type: integer
+          format: int64
+    ResponsePageUserDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/PageUserDTO'
+        message:
+          type: string
+        error:
+          $ref: '#/components/schemas/Error'
+    UserDTO:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        username:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+    ListPostRequest:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        sort:
+          type: string
+        direction:
+          type: string
+        ignorePage:
+          type: boolean
+        searchTerm:
+          type: string
+        userId:
+          type: string
+        tagIds:
+          type: array
+          items:
+            type: string
+    PagePostDTO:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostDTO'
+        totalElement:
+          type: integer
+          format: int64
+        totalPage:
+          type: integer
+          format: int64
+    PostDTO:
+      type: object
+      properties:
+        postId:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        userId:
+          type: string
+        fullName:
+          type: string
+        status:
+          type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagDTO'
+    ResponsePagePostDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/PagePostDTO'
+        message:
+          type: string
+        error:
+          $ref: '#/components/schemas/Error'
+    TagDTO:
+      type: object
+      properties:
+        tagId:
+          type: string
+        tagName:
+          type: string
+        description:
+          type: string
+    ResponsePostDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/PostDTO'
+        message:
+          type: string
+        error:
+          $ref: '#/components/schemas/Error'

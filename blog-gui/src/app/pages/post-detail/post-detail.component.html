@@ -1,0 +1,18 @@
+<div class="dlb-post-detail">
+  <div class="dlb-post-detail__content" >
+    <h1 class="dlb-post-detail__content__title">{{title}}</h1>
+    <div class="dlb-post-detail__content__author">
+<!--      <span class="dlb-post-detail__content__author__name">{{author}}</span>-->
+<!--      <span class="dlb-post-detail__content__author&#45;&#45;hyphen">-</span>-->
+<!--      <span class="dlb-post-detail__content__author__public-date">{{publicDate}}</span>-->
+    </div>
+    <div class="dlb-post-detail__content__detail" [innerHtml]="content"></div>
+    <ul class="dlb-post-detail__content__tag">
+      <li *ngFor="let tag of tags" class="dlb-post-detail__content__tag__item">
+        {{tag}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+

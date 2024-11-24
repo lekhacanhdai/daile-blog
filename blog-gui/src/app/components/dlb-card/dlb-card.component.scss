@@ -1,0 +1,52 @@
+.dlb-card {
+  max-width: 820px;
+  border: 0;
+  border-bottom: 1px solid #b3b3b3;
+  border-radius: 0;
+  cursor: pointer;
+  &:hover {
+    background-color: #e7e7e7;
+  }
+  &__header {
+    padding: 16px;
+    .dlb-card__header-subtitle {
+      font-weight: 400;
+      font-size: 16px;
+    }
+    .dlb-card__header-title {
+      font-weight: 500;
+      padding: 3px 0;
+    }
+  }
+  &__content {
+    display: flex;
+    color: #8d969c;
+    height: 140px;
+    overflow: hidden;
+    .dlb-card__content-img {
+      flex: 0.2;
+      margin: 0 6px;
+      width: 120px;
+      border-radius: 4px;
+      height: 120px;
+      object-fit: cover;
+    }
+    .dlb-card__content-text {
+      flex: 0.8;
+      display: inline-block;
+    }
+  }
+
+  &__footer {
+    padding: 16px;
+    display: flex;
+    color: #5e6568;;
+    align-items: center;
+    .dlb-card__footer__text {
+      font-size: 12px;
+    }
+    .footer__clock-icon {
+      font-size: 20px;
+    }
+  }
+}
