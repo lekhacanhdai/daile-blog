@@ -1,0 +1,26 @@
+name: Check Blog Gateway Code
+on:
+  push:
+    paths:
+      - 'blog-gateway/**'
+jobs:
+  verify-gateway-code:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: 'Create settings.xml'
+        uses: whelk-io/maven-settings-xml-action@v4
+        with:
+          servers: '[{"id": "github", "username": "${{ secrets.GITHUB_USERNAME }}", "password": "${{ secrets.GITHUB_PASSWORD }}"}]'
+      - name: Verify
+          cd blog-gateway
+          mvn clean install --batch-mode --no-transfer-progress 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

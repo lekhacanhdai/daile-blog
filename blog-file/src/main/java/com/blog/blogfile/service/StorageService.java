@@ -8,5 +8,5 @@ import com.daile.blog.file.UploadFileResponse;
  * @since 27/07/2024
  */
 public interface StorageService {
-    UploadFileResponse uploadFile(UploadFileRequest request);
+  UploadFileResponse uploadFile(UploadFileRequest request);
 }

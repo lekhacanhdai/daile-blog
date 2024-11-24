@@ -11,7 +11,9 @@ import com.daile.blog.post.MListPostResponse;
  * @since 10/06/2024
  */
 public interface PostGrpcClientService {
-    MListPostResponse listPost(ListPostRequest request);
-    MCreatePostResponse createPost(CreatePostRequest request);
-    MGetPostByIdResponse getPostById(String postId);
+  MListPostResponse listPost(ListPostRequest request);
+
+  MCreatePostResponse createPost(CreatePostRequest request);
+
+  MGetPostByIdResponse getPostById(String postId);
 }

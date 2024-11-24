@@ -8,7 +8,9 @@ import com.daile.blog.post.*;
  * @since 10/06/2024
  */
 public interface PostGrpcService {
-    MListPostResponse listPost(MListPostRequest request);
-    MGetPostByIdResponse getPostById(IdRequest request);
-    MCreatePostResponse createPost(MCreatePostRequest request);
+  MListPostResponse listPost(MListPostRequest request);
+
+  MGetPostByIdResponse getPostById(IdRequest request);
+
+  MCreatePostResponse createPost(MCreatePostRequest request);
 }

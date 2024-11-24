@@ -9,8 +9,8 @@ import com.daile.blog.account.UserRegistrationResponse;
  * @author daile
  * @since 02/06/2024
  */
-
 public interface UserGrpcClientService {
-    ListUserResponse listUser(ListUserRequest request);
-    UserRegistrationResponse userRegistration(UserRegistrationRequest request);
+  ListUserResponse listUser(ListUserRequest request);
+
+  UserRegistrationResponse userRegistration(UserRegistrationRequest request);
 }

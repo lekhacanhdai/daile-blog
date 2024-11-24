@@ -9,18 +9,22 @@ import com.daile.blog.common.GrpcError;
  * @since 02/06/2024
  */
 public class ErrorConvertor {
-    public static <T> Response<T> asErrorResponse(GrpcError error) {
-        return Response.<T>newBuilder()
-                .setSuccess(false)
-                .setError(Error.newBuilder()
-                        .setCode(error.getCode().name())
-                        .setDetails(error.getDetailsList().stream()
-                                .map(e -> Error.ErrorDetail.newBuilder()
-                                        .setCode(e.getCode())
-                                        .setMessage(e.getMessage())
-                                        .build())
-                                .toList())
-                        .build())
-                .build();
-    }
+  public static <T> Response<T> asErrorResponse(GrpcError error) {
+    return Response.<T>newBuilder()
+        .setSuccess(false)
+        .setError(
+            Error.newBuilder()
+                .setCode(error.getCode().name())
+                .setDetails(
+                    error.getDetailsList().stream()
+                        .map(
+                            e ->
+                                Error.ErrorDetail.newBuilder()
+                                    .setCode(e.getCode())
+                                    .setMessage(e.getMessage())
+                                    .build())
+                        .toList())
+                .build())
+        .build();
+  }
 }

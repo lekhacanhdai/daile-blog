@@ -9,23 +9,21 @@ import org.springframework.stereotype.Component;
  * @author daile
  * @since 01/06/2024
  */
-
 @Component
 public class UserMapper extends GrpcMapper<UserEntity, User, User.Builder> {
 
-    @Override
-    public User toGrpc(UserEntity input) {
-        return User.newBuilder()
-                .setEmail(input.getEmail())
-                .setUserId(input.getUserId().toString())
-                .setFullName(input.getFullName())
-                .setUsername(input.getUsername())
-                .build();
-    }
+  @Override
+  public User toGrpc(UserEntity input) {
+    return User.newBuilder()
+        .setEmail(input.getEmail())
+        .setUserId(input.getUserId().toString())
+        .setFullName(input.getFullName())
+        .setUsername(input.getUsername())
+        .build();
+  }
 
-    @Override
-    public User.Builder toGrpcBuilder(UserEntity input) {
-        return null;
-    }
-
+  @Override
+  public User.Builder toGrpcBuilder(UserEntity input) {
+    return null;
+  }
 }

@@ -1,10 +1,9 @@
 package com.blog.proto.security;
 
+import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 /**
  * @author daile
@@ -14,7 +13,7 @@ import java.util.List;
 @Setter
 @Builder(setterPrefix = "set", builderMethodName = "newBuilder")
 public class BlogPrincipal {
-    private String username;
-    private String userId;
-    private List<String> roles;
+  private String username;
+  private String userId;
+  private List<String> roles;
 }
