@@ -5,7 +5,7 @@ on:
       - 'blog-common/**'
       - 'blog-proto/**'
       - 'blog-auth/**'
-      - 'blog-accont/**'
+      - 'blog-account/**'
       - 'blog-file/**'
       - 'blog-post/**'
       - 'blog-gateway/**'
