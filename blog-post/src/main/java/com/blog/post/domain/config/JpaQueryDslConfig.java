@@ -9,11 +9,10 @@ import org.springframework.context.annotation.Configuration;
  * @author daile
  * @since 10/06/2024
  */
-
 @Configuration
 public class JpaQueryDslConfig {
-    @Bean
-    public JPAQueryFactory jpaQueryFactory(EntityManager entityManager) {
-        return new JPAQueryFactory(entityManager);
-    }
+  @Bean
+  public JPAQueryFactory jpaQueryFactory(EntityManager entityManager) {
+    return new JPAQueryFactory(entityManager);
+  }
 }

@@ -13,19 +13,18 @@ import org.springframework.stereotype.Component;
  * @author daile
  * @since 10/06/2024
  */
-
 @Component
-public class CdcAccountUserRoleConsumer extends CdcEventConsumer<CdcUserRoleEntity, CdcUserRole, UserRoleRepository> {
-    public CdcAccountUserRoleConsumer(ObjectMapper objectMapper, UserRoleRepository repository) {
-        super(objectMapper, repository, CdcUserRole.class);
-    }
+public class CdcAccountUserRoleConsumer
+    extends CdcEventConsumer<CdcUserRoleEntity, CdcUserRole, UserRoleRepository> {
+  public CdcAccountUserRoleConsumer(ObjectMapper objectMapper, UserRoleRepository repository) {
+    super(objectMapper, repository, CdcUserRole.class);
+  }
 
-    @Override
-    @KafkaListener(
-            topics = {"blogaccount.blogaccount.user_role"},
-            containerFactory = "kafkaListenerContainerFactory"
-    )
-    protected void onChange(ConsumerRecord<String, String> record) {
-        onEvent(record);
-    }
+  @Override
+  @KafkaListener(
+      topics = {"blogaccount.blogaccount.user_role"},
+      containerFactory = "kafkaListenerContainerFactory")
+  protected void onChange(ConsumerRecord<String, String> record) {
+    onEvent(record);
+  }
 }

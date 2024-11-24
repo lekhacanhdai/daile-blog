@@ -8,7 +8,9 @@ import com.daile.blog.common.IdRequest;
  * @since 26/05/2024
  */
 public interface UserGrpcService {
-    UserRegistrationResponse createUser(UserRegistrationRequest request);
-    ListUserResponse listUser(ListUserRequest request);
-    GetUserByIdResponse getUserById(IdRequest request);
+  UserRegistrationResponse createUser(UserRegistrationRequest request);
+
+  ListUserResponse listUser(ListUserRequest request);
+
+  GetUserByIdResponse getUserById(IdRequest request);
 }

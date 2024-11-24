@@ -10,12 +10,11 @@ import lombok.Setter;
  * @author daile
  * @since 28/08/2024
  */
-
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UploadFileResponse {
-    private String path;
+  private String path;
 }

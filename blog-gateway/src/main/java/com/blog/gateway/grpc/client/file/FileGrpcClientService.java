@@ -8,5 +8,5 @@ import org.springframework.web.multipart.MultipartFile;
  * @since 28/08/2024
  */
 public interface FileGrpcClientService {
-    UploadFileResponse uploadFile(MultipartFile file);
+  UploadFileResponse uploadFile(MultipartFile file);
 }

@@ -7,9 +7,8 @@ import lombok.Data;
  * @author daile
  * @since 08/06/2024
  */
-
 @Data
 @Builder
 public class IdDTO {
-    private String id;
+  private String id;
 }

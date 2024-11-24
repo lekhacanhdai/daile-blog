@@ -1,18 +1,16 @@
 package com.blog.account.domain.entity;
 
 import jakarta.persistence.*;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
 /**
  * @author daile
  * @since 26/05/2024
  */
-
 @Entity
 @Table(name = "roles")
 @Getter
@@ -20,17 +18,17 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoleEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
-    private UUID roleId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "role_id")
+  private UUID roleId;
 
-    @Column(name = "role", nullable = false)
-    private String role;
+  @Column(name = "role", nullable = false)
+  private String role;
 
-    @Column(name = "description")
-    private String description;
+  @Column(name = "description")
+  private String description;
 
-    @Column(name = "status")
-    private Integer status = 0;
+  @Column(name = "status")
+  private Integer status = 0;
 }

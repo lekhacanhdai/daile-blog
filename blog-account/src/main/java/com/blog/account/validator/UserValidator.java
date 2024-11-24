@@ -8,5 +8,6 @@ import com.daile.blog.account.UserRegistrationResponse;
  * @since 26/05/2024
  */
 public interface UserValidator {
-    boolean validateUserRegistration(UserRegistrationRequest request, UserRegistrationResponse.Builder builder);
+  boolean validateUserRegistration(
+      UserRegistrationRequest request, UserRegistrationResponse.Builder builder);
 }

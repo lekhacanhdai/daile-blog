@@ -13,19 +13,22 @@ import net.devh.boot.grpc.server.service.GrpcService;
  * @author daile
  * @since 27/07/2024
  */
-
 @GrpcService
 @RequiredArgsConstructor
 public class StorageGrpcServer extends FileServiceGrpc.FileServiceImplBase {
-    private final StorageService storageService;
-    @Override
-    public void uploadFile(UploadFileRequest request, StreamObserver<UploadFileResponse> responseObserver) {
-        GrpcServerUtils.execute(request,
-                responseObserver,
-                storageService::uploadFile,
-                (e) -> UploadFileResponse.newBuilder()
-                        .setSuccess(false)
-                        .setError(GrpcServerUtils.getError(e))
-                        .build());
-    }
+  private final StorageService storageService;
+
+  @Override
+  public void uploadFile(
+      UploadFileRequest request, StreamObserver<UploadFileResponse> responseObserver) {
+    GrpcServerUtils.execute(
+        request,
+        responseObserver,
+        storageService::uploadFile,
+        (e) ->
+            UploadFileResponse.newBuilder()
+                .setSuccess(false)
+                .setError(GrpcServerUtils.getError(e))
+                .build());
+  }
 }

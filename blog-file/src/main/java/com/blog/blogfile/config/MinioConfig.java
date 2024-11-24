@@ -9,23 +9,19 @@ import org.springframework.context.annotation.Configuration;
  * @author daile
  * @since 27/07/2024
  */
-
 @Configuration
 public class MinioConfig {
-    @Value("${minio.url}")
-    private String url;
+  @Value("${minio.url}")
+  private String url;
 
-    @Value("${minio.access.name}")
-    private String accessKey;
+  @Value("${minio.access.name}")
+  private String accessKey;
 
-    @Value("${minio.access.secret}")
-    private String accessSecret;
+  @Value("${minio.access.secret}")
+  private String accessSecret;
 
-    @Bean
-    public MinioClient minioClient() {
-        return MinioClient.builder()
-                .endpoint(url)
-                .credentials(accessKey, accessSecret)
-                .build();
-    }
+  @Bean
+  public MinioClient minioClient() {
+    return MinioClient.builder().endpoint(url).credentials(accessKey, accessSecret).build();
+  }
 }
