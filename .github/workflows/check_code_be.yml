@@ -1,10 +1,16 @@
-name: Check Blog Proto Code
+name: Check code BE
 on:
   push:
     paths:
+      - 'blog-common/**'
       - 'blog-proto/**'
+      - 'blog-auth/**'
+      - 'blog-accont/**'
+      - 'blog-file/**'
+      - 'blog-post/**'
+      - 'blog-gateway/**'
 jobs:
-  verify-proto-code:
+  verify-code-be:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,7 +27,17 @@ jobs:
           servers: '[{"id": "github", "username": "${{ secrets.GITHUB_USERNAME }}", "password": "${{ secrets.GITHUB_PASSWORD }}"}]'
       - name: Verify
         run: |
-          cd blog-proto
-          mvn clean install --batch-mode --no-transfer-progress 
+          cd blog-common
+          mvn clean install --batch-mode
+          cd ../blog-proto
+          mvn clean install --batch-mode
+          cd ../blog-account
+          mvn clean install --batch-mode
+          cd ../blog-file
+          mvn clean install --batch-mode
+          cd ../blog-post
+          mvn clean install --batch-mode
+          cd ../blog-gateway
+          mvn clean install --batch-mode
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
