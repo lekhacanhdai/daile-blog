@@ -1,5 +1,7 @@
-name: Publish package to GitHub Packages
-on: push
+name: Publish blog package
+on:
+  release:
+    types: [created]
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -17,6 +19,14 @@ jobs:
           cd blog-common
           mvn --batch-mode deploy
           cd ../blog-proto
+          mvn --batch-mode deploy
+          cd ../blog-account
+          mvn --batch-mode deploy
+          cd ../blog-file
+          mvn --batch-mode deploy
+          cd ../blog-post
+          mvn --batch-mode deploy
+          cd ../blog-gatewat
           mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
