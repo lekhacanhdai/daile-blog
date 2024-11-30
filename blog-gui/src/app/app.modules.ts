@@ -1,28 +1,31 @@
-import {NgModule} from '@angular/core';
-import {AppComponent} from './app.component';
-import {RouterOutlet} from '@angular/router';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AppRoutingModule} from './app-routing.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HeaderComponent} from './components/header/header.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { RouterOutlet } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './components/header/header.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatCardModule} from '@angular/material/card';
-import {DlbCardComponent} from './components/dlb-card/dlb-card.component';
-import {ListPostComponent} from './pages/list-post/list-post.component';
-import {PostDetailComponent} from './pages/post-detail/post-detail.component';
-import {DlbInputComponent} from './components/dlb-input/dlb-input.component';
-import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import {AppEditor} from './components/editor/editor.component';
-import {HighlightModule, provideHighlightOptions} from 'ngx-highlightjs';
-import {HighlightPlusModule} from 'ngx-highlightjs/plus';
-import {HighlightCodeDirective} from './directives/highlight-code.directive';
-import {MatButtonModule} from '@angular/material/button';
-import {ApiModule} from './open-api';
-import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { DlbCardComponent } from './components/dlb-card/dlb-card.component';
+import { ListPostComponent } from './pages/list-post/list-post.component';
+import { PostDetailComponent } from './pages/post-detail/post-detail.component';
+import { DlbInputComponent } from './components/dlb-input/dlb-input.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { AppEditorComponent } from './components/editor/editor.component';
+import { HighlightModule, provideHighlightOptions } from 'ngx-highlightjs';
+import { HighlightPlusModule } from 'ngx-highlightjs/plus';
+import { HighlightCodeDirective } from './directives/highlight-code.directive';
+import { MatButtonModule } from '@angular/material/button';
+import { ApiModule } from './open-api';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,8 +36,8 @@ import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
     ListPostComponent,
     PostDetailComponent,
     DlbInputComponent,
-    AppEditor,
-    HighlightCodeDirective
+    AppEditorComponent,
+    HighlightCodeDirective,
   ],
   imports: [
     RouterOutlet,
@@ -51,22 +54,16 @@ import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
     HighlightModule,
     HighlightPlusModule,
     MatButtonModule,
-    ApiModule
+    ApiModule,
   ],
   providers: [
     provideAnimationsAsync(),
     provideHighlightOptions({
-      fullLibraryLoader: () => import('highlight.js')
+      fullLibraryLoader: () => import('highlight.js'),
     }),
-    provideHttpClient(
-      withInterceptorsFromDi()
-    )
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  exports: [
-    DlbInputComponent
-  ],
-  bootstrap: [AppComponent]
+  exports: [DlbInputComponent],
+  bootstrap: [AppComponent],
 })
-
-export class AppModule {
-}
+export class AppModule {}

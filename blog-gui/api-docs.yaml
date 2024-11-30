@@ -3,19 +3,19 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- url: https://api.daile.tech
-  description: Generated server url
+  - url: https://api.daile.tech
+    description: Generated server url
 paths:
   /users/registration:
     post:
       tags:
-      - user-controller
+        - user-controller
       operationId: userRegistration
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserRegistrationRequest'
+              $ref: "#/components/schemas/UserRegistrationRequest"
         required: true
       responses:
         "200":
@@ -23,34 +23,34 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseIdDTO'
+                $ref: "#/components/schemas/ResponseIdDTO"
   /posts:
     get:
       tags:
-      - post-controller
+        - post-controller
       operationId: listPost
       parameters:
-      - name: request
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/ListPostRequest'
+        - name: request
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/ListPostRequest"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponsePagePostDTO'
+                $ref: "#/components/schemas/ResponsePagePostDTO"
     post:
       tags:
-      - post-controller
+        - post-controller
       operationId: createPost
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreatePostRequest'
+              $ref: "#/components/schemas/CreatePostRequest"
         required: true
       responses:
         "200":
@@ -58,18 +58,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseIdDTO'
+                $ref: "#/components/schemas/ResponseIdDTO"
   /files:
     post:
       tags:
-      - file-controller
+        - file-controller
       operationId: uploadFile
       requestBody:
         content:
           application/json:
             schema:
               required:
-              - file
+                - file
               type: object
               properties:
                 file:
@@ -81,29 +81,29 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseNoContentResponse'
+                $ref: "#/components/schemas/ResponseNoContentResponse"
   /users:
     get:
       tags:
-      - user-controller
+        - user-controller
       operationId: listUser
       parameters:
-      - name: request
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/ListUserRequest'
+        - name: request
+          in: query
+          required: true
+          schema:
+            $ref: "#/components/schemas/ListUserRequest"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponsePageUserDTO'
+                $ref: "#/components/schemas/ResponsePageUserDTO"
   /public:
     get:
       tags:
-      - test-controller
+        - test-controller
       operationId: publicAPI
       responses:
         "200":
@@ -115,7 +115,7 @@ paths:
   /private:
     get:
       tags:
-      - test-controller
+        - test-controller
       operationId: privateAPI
       responses:
         "200":
@@ -127,21 +127,21 @@ paths:
   /posts/{id}:
     get:
       tags:
-      - post-controller
+        - post-controller
       operationId: getPostById
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponsePostDTO'
+                $ref: "#/components/schemas/ResponsePostDTO"
 components:
   schemas:
     UserRegistrationRequest:
@@ -163,7 +163,7 @@ components:
         details:
           type: array
           items:
-            $ref: '#/components/schemas/ErrorDetail'
+            $ref: "#/components/schemas/ErrorDetail"
     ErrorDetail:
       type: object
       properties:
@@ -182,11 +182,11 @@ components:
         success:
           type: boolean
         data:
-          $ref: '#/components/schemas/IdDTO'
+          $ref: "#/components/schemas/IdDTO"
         message:
           type: string
         error:
-          $ref: '#/components/schemas/Error'
+          $ref: "#/components/schemas/Error"
     CreatePostRequest:
       type: object
       properties:
@@ -208,11 +208,11 @@ components:
         success:
           type: boolean
         data:
-          $ref: '#/components/schemas/NoContentResponse'
+          $ref: "#/components/schemas/NoContentResponse"
         message:
           type: string
         error:
-          $ref: '#/components/schemas/Error'
+          $ref: "#/components/schemas/Error"
     ListUserRequest:
       type: object
       properties:
@@ -236,7 +236,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/UserDTO'
+            $ref: "#/components/schemas/UserDTO"
         totalElement:
           type: integer
           format: int64
@@ -249,11 +249,11 @@ components:
         success:
           type: boolean
         data:
-          $ref: '#/components/schemas/PageUserDTO'
+          $ref: "#/components/schemas/PageUserDTO"
         message:
           type: string
         error:
-          $ref: '#/components/schemas/Error'
+          $ref: "#/components/schemas/Error"
     UserDTO:
       type: object
       properties:
@@ -295,7 +295,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/PostDTO'
+            $ref: "#/components/schemas/PostDTO"
         totalElement:
           type: integer
           format: int64
@@ -320,18 +320,18 @@ components:
         tags:
           type: array
           items:
-            $ref: '#/components/schemas/TagDTO'
+            $ref: "#/components/schemas/TagDTO"
     ResponsePagePostDTO:
       type: object
       properties:
         success:
           type: boolean
         data:
-          $ref: '#/components/schemas/PagePostDTO'
+          $ref: "#/components/schemas/PagePostDTO"
         message:
           type: string
         error:
-          $ref: '#/components/schemas/Error'
+          $ref: "#/components/schemas/Error"
     TagDTO:
       type: object
       properties:
@@ -347,8 +347,8 @@ components:
         success:
           type: boolean
         data:
-          $ref: '#/components/schemas/PostDTO'
+          $ref: "#/components/schemas/PostDTO"
         message:
           type: string
         error:
-          $ref: '#/components/schemas/Error'
+          $ref: "#/components/schemas/Error"

@@ -1,0 +1,38 @@
+name: Check code FE
+on:
+  push:
+    paths:
+      - 'blog-gui/**'
+jobs:
+  verify-code-quality:
+    name: Verify Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # Use the required Node.js version
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: |
+          cd blog-gui
+          npm install
+
+      # Lint code
+      - name: Lint Code
+        run: |
+          cd blog-gui
+          npm run lint
+
+      # Verify build
+      - name: Verify Build
+        run: |
+          cd blog-gui
+          npm run build

@@ -1,15 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 @include mat.core();
-@import 'ckeditor5/ckeditor5.css';
+@import "ckeditor5/ckeditor5.css";
 
 :root {
   --primary-text-color: #262626;
   --primary-background-color: #6aca94;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   width: 100%;
