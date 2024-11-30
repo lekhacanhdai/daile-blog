@@ -20,21 +20,24 @@ public abstract class CdcEventConsumer<
   private final R repository;
   private final Class<C> cClass;
 
-  protected abstract void onChange(ConsumerRecord<String, String> record);
+  protected abstract void onChange(ConsumerRecord<String, String> receivedRecord);
 
-  protected void onEvent(ConsumerRecord<String, String> record) {
-    if (record.value() == null) {
+  protected void onEvent(ConsumerRecord<String, String> receivedRecord) {
+    if (receivedRecord.value() == null) {
       log.info(
           "Received tombstone event for key {} from topic {}. Ignored",
-          record.key(),
-          record.topic());
+          receivedRecord.key(),
+          receivedRecord.topic());
       return;
     }
     try {
-      var payload = objectMapper.readValue(record.value(), CdcPayload.class);
+      var payload = objectMapper.readValue(receivedRecord.value(), CdcPayload.class);
       process(payload);
     } catch (JsonProcessingException e) {
-      log.info("Failure when convert cdc event from topic {}. {}", record.topic(), e.getMessage());
+      log.info(
+          "Failure when convert cdc event from topic {}. {}",
+          receivedRecord.topic(),
+          e.getMessage());
       //noinspection CallToPrintStackTrace
       e.printStackTrace();
     }

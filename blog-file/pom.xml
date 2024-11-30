@@ -17,6 +17,8 @@
         <java.version>17</java.version>
         <grpc.version>3.1.0.RELEASE</grpc.version>
         <minio.version>8.5.11</minio.version>
+        <sonar.organization>lekhacanhdai</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
         <dependency>
