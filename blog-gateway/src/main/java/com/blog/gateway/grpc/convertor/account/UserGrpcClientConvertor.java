@@ -9,10 +9,6 @@ import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-/**
- * @author daile
- * @since 02/06/2024
- */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserGrpcClientConvertor extends BaseResponse {
   public static Response<Page<UserDTO>> asSuccessResponse(ListUserResponse.Data data) {
