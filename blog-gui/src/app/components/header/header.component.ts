@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +7,7 @@ import {Router} from '@angular/router';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
   navigateToHome(): void {
     this.router.navigate(['/posts']).then(() => {});

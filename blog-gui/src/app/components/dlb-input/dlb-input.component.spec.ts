@@ -8,9 +8,8 @@ describe('DlbInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DlbInputComponent]
-    })
-    .compileComponents();
+      declarations: [DlbInputComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DlbInputComponent);
     component = fixture.componentInstance;

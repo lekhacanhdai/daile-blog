@@ -1,17 +1,25 @@
 <mat-card class="dlb-card" appearance="outlined">
   <mat-card-header class="dlb-card__header">
     <mat-card-title-group class="dlb-card__header-group">
-      <mat-card-subtitle class="dlb-card__header-subtitle">{{ subTitle }}</mat-card-subtitle>
-      <mat-card-title class="dlb-card__header-title">{{ title }}</mat-card-title>
+      <mat-card-subtitle class="dlb-card__header-subtitle">{{
+        subTitle
+      }}</mat-card-subtitle>
+      <mat-card-title class="dlb-card__header-title">{{
+        title
+      }}</mat-card-title>
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content class="dlb-card__content">
     <p class="dlb-card__content-text" [innerHtml]="content"></p>
-    <img class="dlb-card__content-img" mat-card-sm-image src="{{ imageUrl }}" alt="cover image" >
+    <img
+      class="dlb-card__content-img"
+      mat-card-sm-image
+      src="{{ imageUrl }}"
+      alt="cover image"
+    />
   </mat-card-content>
   <mat-card-footer class="dlb-card__footer">
-<!--    <mat-icon class="footer__clock-icon">access_time</mat-icon>-->
-<!--    <span class="dlb-card__footer__text">{{ time }}</span>-->
+    <!--    <mat-icon class="footer__clock-icon">access_time</mat-icon>-->
+    <!--    <span class="dlb-card__footer__text">{{ time }}</span>-->
   </mat-card-footer>
 </mat-card>
-

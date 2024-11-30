@@ -1,4 +1,9 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ViewEncapsulation} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 
 import {
   ClassicEditor,
@@ -70,22 +75,28 @@ import {
   TodoList,
   Underline,
   Undo,
-  type EditorConfig, Editor, FileLoader
+  type EditorConfig,
+  Editor,
+  FileLoader,
 } from 'ckeditor5';
 import CustomUploadAdapter from './custom-image-adapter';
-import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
-import {PostService} from '../../services/post.service';
-import {ResponseIdDTO} from '../../open-api';
-import {Router} from '@angular/router';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import { PostService } from '../../services/post.service';
+import { ResponseIdDTO } from '../../open-api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrl: './editor.component.scss',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
-export class AppEditor implements AfterViewInit{
-  constructor(private changeDetector: ChangeDetectorRef, private postService: PostService, private _router: Router) {}
+export class AppEditorComponent implements AfterViewInit {
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private postService: PostService,
+    private _router: Router,
+  ) {}
 
   public isLayoutReady = false;
   public Editor = ClassicEditor;
@@ -93,8 +104,13 @@ export class AppEditor implements AfterViewInit{
 
   public ngAfterViewInit(): void {
     function MyCustomUploadAdapterPlugin(editor: Editor) {
-      editor.plugins.get('FileRepository').createUploadAdapter = (loader: FileLoader) => {
-        return new CustomUploadAdapter({ loader, url: 'https://api.daile.tech/files' });
+      editor.plugins.get('FileRepository').createUploadAdapter = (
+        loader: FileLoader,
+      ) => {
+        return new CustomUploadAdapter({
+          loader,
+          url: 'https://api.daile.tech/files',
+        });
       };
     }
     this.config = {
@@ -140,9 +156,9 @@ export class AppEditor implements AfterViewInit{
           'numberedList',
           'todoList',
           'outdent',
-          'indent'
+          'indent',
         ],
-        shouldNotGroupWhenFull: true
+        shouldNotGroupWhenFull: true,
       },
 
       codeBlock: {
@@ -174,8 +190,8 @@ export class AppEditor implements AfterViewInit{
           { language: 'objective-c', label: 'Objective-C' },
           { language: 'scala', label: 'Scala' },
           { language: 'haskell', label: 'Haskell' },
-          { language: 'lua', label: 'Lua' }
-        ] // Set default language if desired
+          { language: 'lua', label: 'Lua' },
+        ], // Set default language if desired
       },
       plugins: [
         AccessibilityHelp,
@@ -246,59 +262,59 @@ export class AppEditor implements AfterViewInit{
         TodoList,
         Underline,
         MyCustomUploadAdapterPlugin,
-        Undo
+        Undo,
       ],
       fontFamily: {
-        supportAllValues: true
+        supportAllValues: true,
       },
       fontSize: {
         options: [10, 12, 14, 'default', 18, 20, 22],
-        supportAllValues: true
+        supportAllValues: true,
       },
       heading: {
         options: [
           {
             model: 'paragraph',
             title: 'Paragraph',
-            class: 'ck-heading_paragraph'
+            class: 'ck-heading_paragraph',
           },
           {
             model: 'heading1',
             view: 'h1',
             title: 'Heading 1',
-            class: 'ck-heading_heading1'
+            class: 'ck-heading_heading1',
           },
           {
             model: 'heading2',
             view: 'h2',
             title: 'Heading 2',
-            class: 'ck-heading_heading2'
+            class: 'ck-heading_heading2',
           },
           {
             model: 'heading3',
             view: 'h3',
             title: 'Heading 3',
-            class: 'ck-heading_heading3'
+            class: 'ck-heading_heading3',
           },
           {
             model: 'heading4',
             view: 'h4',
             title: 'Heading 4',
-            class: 'ck-heading_heading4'
+            class: 'ck-heading_heading4',
           },
           {
             model: 'heading5',
             view: 'h5',
             title: 'Heading 5',
-            class: 'ck-heading_heading5'
+            class: 'ck-heading_heading5',
           },
           {
             model: 'heading6',
             view: 'h6',
             title: 'Heading 6',
-            class: 'ck-heading_heading6'
-          }
-        ]
+            class: 'ck-heading_heading6',
+          },
+        ],
       },
       htmlSupport: {
         allow: [
@@ -306,9 +322,9 @@ export class AppEditor implements AfterViewInit{
             name: /^.*$/,
             styles: true,
             attributes: true,
-            classes: true
-          }
-        ]
+            classes: true,
+          },
+        ],
       },
       extraPlugins: [MyCustomUploadAdapterPlugin],
       image: {
@@ -320,8 +336,8 @@ export class AppEditor implements AfterViewInit{
           'imageStyle:wrapText',
           'imageStyle:breakText',
           '|',
-          'resizeImage'
-        ]
+          'resizeImage',
+        ],
       },
       link: {
         addTargetToExternalLinks: true,
@@ -331,17 +347,17 @@ export class AppEditor implements AfterViewInit{
             mode: 'manual',
             label: 'Downloadable',
             attributes: {
-              download: 'file'
-            }
-          }
-        }
+              download: 'file',
+            },
+          },
+        },
       },
       list: {
         properties: {
           styles: true,
           startIndex: true,
-          reversed: true
-        }
+          reversed: true,
+        },
       },
       placeholder: 'Type or paste your content here!',
       style: {
@@ -349,89 +365,99 @@ export class AppEditor implements AfterViewInit{
           {
             name: 'Article category',
             element: 'h3',
-            classes: ['category']
+            classes: ['category'],
           },
           {
             name: 'Title',
             element: 'h2',
-            classes: ['document-title']
+            classes: ['document-title'],
           },
           {
             name: 'Subtitle',
             element: 'h3',
-            classes: ['document-subtitle']
+            classes: ['document-subtitle'],
           },
           {
             name: 'Info box',
             element: 'p',
-            classes: ['info-box']
+            classes: ['info-box'],
           },
           {
             name: 'Side quote',
             element: 'blockquote',
-            classes: ['side-quote']
+            classes: ['side-quote'],
           },
           {
             name: 'Marker',
             element: 'span',
-            classes: ['marker']
+            classes: ['marker'],
           },
           {
             name: 'Spoiler',
             element: 'span',
-            classes: ['spoiler']
+            classes: ['spoiler'],
           },
           {
             name: 'Code (dark)',
             element: 'pre',
-            classes: ['fancy-code', 'fancy-code-dark']
+            classes: ['fancy-code', 'fancy-code-dark'],
           },
           {
             name: 'Code (bright)',
             element: 'pre',
-            classes: ['fancy-code', 'fancy-code-bright']
-          }
-        ]
+            classes: ['fancy-code', 'fancy-code-bright'],
+          },
+        ],
       },
       table: {
-        contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties']
-      }
+        contentToolbar: [
+          'tableColumn',
+          'tableRow',
+          'mergeTableCells',
+          'tableProperties',
+          'tableCellProperties',
+        ],
+      },
     };
 
     this.isLayoutReady = true;
     this.changeDetector.detectChanges();
   }
 
-  public onChange( { editor }: ChangeEvent ) {
+  public onChange({ editor }: ChangeEvent) {
     this.data = editor.getData();
   }
 
-  data = ''
-  title = ''
+  data = '';
+  title = '';
   numRows = 1;
 
-  autoExpand(event: any): void {
-    const textarea = event.target;
-    const lineHeight = 40; // Adjust line height as necessary
-    const maxRows = 5; // Max number of rows to prevent indefinite expansion
-    const minRows = 1; // Minimum number of rows
-    const contentHeight = textarea.scrollHeight;
-    const newRows = Math.floor(contentHeight / lineHeight);
-    // Update rows based on content height, with bounds between minRows and maxRows
-    this.numRows = Math.max(minRows, Math.min(newRows, maxRows));
+  autoExpand(event: Event): void {
+    const textarea = event.target as HTMLTextAreaElement;
+
+    if (!textarea) return;
+    const lineHeight = 40;
+    const maxRows = 5;
+    const minRows = 1;
+
+    textarea.rows = minRows;
+
+    const newRows = Math.floor(textarea.scrollHeight / lineHeight);
+    textarea.rows = Math.max(minRows, Math.min(newRows, maxRows));
   }
 
-
   savePost(): void {
-    this.postService.createPost({title: this.title, content: this.data, status: 'PUBLISH', tagIds: []})
-      .subscribe((res: ResponseIdDTO) => {
-        if (res.success)
-        this._router.navigate(["/posts"]).then(() => {})
+    this.postService
+      .createPost({
+        title: this.title,
+        content: this.data,
+        status: 'PUBLISH',
+        tagIds: [],
       })
+      .subscribe((res: ResponseIdDTO) => {
+        if (res.success) this._router.navigate(['/posts']).then(() => {});
+      });
   }
 
   protected readonly console = console;
-
-
 }
-

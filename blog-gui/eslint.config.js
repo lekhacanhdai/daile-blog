@@ -6,6 +6,10 @@ const angular = require("angular-eslint");
 module.exports = tseslint.config(
   {
     files: ["**/*.ts"],
+    ignores: ["src/app/open-api/**"],
+    plugins: {
+      prettier: require('eslint-plugin-prettier'),
+    },
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
@@ -30,14 +34,14 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      "@typescript-eslint/no-empty-function": "off",
+      "@typescript-eslint/no-explicit-any": "error",
+      'prettier/prettier': 'error',
     },
   },
   {
     files: ["**/*.html"],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-    ],
+    extends: [...angular.configs.templateRecommended],
     rules: {},
-  }
+  },
 );

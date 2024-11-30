@@ -8,7 +8,8 @@
     "build": "openapi-generator-cli generate -i api-docs.yaml -g typescript-angular -o src/app/open-api && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "lint:fix": "prettier --write src && ng lint --fix"
   },
   "private": true,
   "dependencies": {

@@ -4,16 +4,16 @@ import {
   ListPostRequest,
   PostControllerService,
   ResponseIdDTO,
-  ResponsePagePostDTO, ResponsePostDTO
+  ResponsePagePostDTO,
+  ResponsePostDTO,
 } from '../open-api';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PostService {
-
-  constructor(private service: PostControllerService) { }
+  constructor(private service: PostControllerService) {}
 
   createPost(createPostRequest: CreatePostRequest): Observable<ResponseIdDTO> {
     return this.service.createPost(createPostRequest);
@@ -26,5 +26,4 @@ export class PostService {
   getPostById(id: string): Observable<ResponsePostDTO> {
     return this.service.getPostById(id);
   }
-
 }

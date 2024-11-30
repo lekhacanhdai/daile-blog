@@ -1,9 +1,12 @@
 <div class="dlb-input">
-  <p class="dlb-input__content" contenteditable="true"
-     [attr.data-placeholder]="dataPlaceHolder"
-     (change)="onFocus()"
-     [ngModel]="content"
-  ><span class="dlb-input__content__place-holder" #placeHolder>Title</span>
-    {{content}}
+  <p
+    class="dlb-input__content"
+    contenteditable="true"
+    [attr.data-placeholder]="dataPlaceHolder"
+    (change)="onFocus()"
+    [ngModel]="content"
+  >
+    <span class="dlb-input__content__place-holder" #placeHolder>Title</span>
+    {{ content }}
   </p>
 </div>
