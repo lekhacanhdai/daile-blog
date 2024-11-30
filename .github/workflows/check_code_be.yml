@@ -42,19 +42,19 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Verify quality common
         working-directory: blog-common
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-common
+        run: mvn clean package --batch-mode sonar:sonar -Dsonar.projectKey=blog-common -Dsonar.qualitygate.wait=true
       - name: Verify quality proto
         working-directory: blog-proto
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-proto
+        run: mvn clean package --batch-mode sonar:sonar -Dsonar.projectKey=blog-proto -Dsonar.qualitygate.wait=true
       - name: Verify quality account
         working-directory: blog-account
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-account
+        run: mvn clean package --batch-mode sonar:sonar -Dsonar.projectKey=blog-account -Dsonar.qualitygate.wait=true
       - name: Verify quality file
         working-directory: blog-file
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-file
+        run: mvn clean package --batch-mode sonar:sonar -Dsonar.projectKey=blog-file -Dsonar.qualitygate.wait=true
       - name: Verify quality post
         working-directory: blog-post
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-post
+        run: mvn clean package --batch-mode sonar:sonar -Dsonar.projectKey=blog-post -Dsonar.qualitygate.wait=true
       - name: Verify quality gateway
         working-directory: blog-gateway
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-gateway
+        run: mvn clean package --batch-mode sonar:sonar -Dsonar.projectKey=blog-gateway -Dsonar.qualitygate.wait=true
