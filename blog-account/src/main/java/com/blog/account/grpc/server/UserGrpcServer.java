@@ -25,7 +25,7 @@ public class UserGrpcServer extends UserGrpcServiceGrpc.UserGrpcServiceImplBase 
         request,
         responseObserver,
         userGrpcService::createUser,
-        (e) ->
+        e ->
             UserRegistrationResponse.newBuilder()
                 .setSuccess(false)
                 .setError(GrpcServerUtils.getError(e))
@@ -38,7 +38,7 @@ public class UserGrpcServer extends UserGrpcServiceGrpc.UserGrpcServiceImplBase 
         request,
         responseObserver,
         userGrpcService::getUserById,
-        (e) ->
+        e ->
             GetUserByIdResponse.newBuilder()
                 .setSuccess(false)
                 .setError(GrpcServerUtils.getError(e))
@@ -51,7 +51,7 @@ public class UserGrpcServer extends UserGrpcServiceGrpc.UserGrpcServiceImplBase 
         request,
         responseObserver,
         userGrpcService::listUser,
-        (e) ->
+        e ->
             ListUserResponse.newBuilder()
                 .setSuccess(false)
                 .setError(GrpcServerUtils.getError(e))

@@ -8,11 +8,14 @@ import com.blog.gateway.payload.response.post.TagDTO;
 import com.daile.blog.post.MGetPostByIdResponse;
 import com.daile.blog.post.MListPostResponse;
 import com.daile.blog.post.MPost;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * @author daile
  * @since 10/06/2024
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PostGrpcClientConvertor extends BaseResponse {
   public static Response<Page<PostDTO>> asSuccessResponse(MListPostResponse.Data data) {
     return Response.<Page<PostDTO>>newBuilder()

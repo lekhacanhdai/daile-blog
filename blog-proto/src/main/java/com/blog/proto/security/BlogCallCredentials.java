@@ -26,7 +26,7 @@ public class BlogCallCredentials extends CallCredentials {
                 GrpcConstant.AUTHORIZATION_METADATA_KEY,
                 String.format("%s %s", GrpcConstant.BEARER_TYPE, jwt));
             applier.apply(headers);
-          } catch (Throwable e) {
+          } catch (Exception e) {
             applier.fail(Status.UNAUTHENTICATED.withCause(e));
           }
         });

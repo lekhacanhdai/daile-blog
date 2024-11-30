@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
   @GetMapping("public")
-  public ResponseEntity<?> publicAPI() {
+  public ResponseEntity<Object> publicAPI() {
     return ResponseEntity.ok(Map.of("success", true));
   }
 
   @GetMapping("private")
   @Secured({"ADMIN", "USER"})
-  public ResponseEntity<?> privateAPI() {
+  public ResponseEntity<Object> privateAPI() {
     return ResponseEntity.ok(Map.of("success", true));
   }
 }

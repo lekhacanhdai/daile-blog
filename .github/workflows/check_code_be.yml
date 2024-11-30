@@ -42,22 +42,19 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Verify quality common
         working-directory: blog-common
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-common
       - name: Verify quality proto
         working-directory: blog-proto
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-proto
       - name: Verify quality account
         working-directory: blog-account
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-      - name: Verify quality auth
-        working-directory: blog-auth
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-account
       - name: Verify quality file
         working-directory: blog-file
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-file
       - name: Verify quality post
         working-directory: blog-post
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-post
       - name: Verify quality gateway
         working-directory: blog-gateway
-        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: mvn clean verify install --batch-mode org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=blog-gateway

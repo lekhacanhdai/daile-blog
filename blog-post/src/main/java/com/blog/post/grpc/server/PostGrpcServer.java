@@ -26,7 +26,7 @@ public class PostGrpcServer extends PostGrpcServiceGrpc.PostGrpcServiceImplBase 
         request,
         responseObserver,
         postGrpcService::createPost,
-        (e) ->
+        e ->
             MCreatePostResponse.newBuilder()
                 .setSuccess(false)
                 .setError(GrpcServerUtils.getError(e))
@@ -40,7 +40,7 @@ public class PostGrpcServer extends PostGrpcServiceGrpc.PostGrpcServiceImplBase 
         request,
         responseObserver,
         postGrpcService::listPost,
-        (e) ->
+        e ->
             MListPostResponse.newBuilder()
                 .setSuccess(false)
                 .setError(GrpcServerUtils.getError(e))
@@ -54,7 +54,7 @@ public class PostGrpcServer extends PostGrpcServiceGrpc.PostGrpcServiceImplBase 
         request,
         responseObserver,
         postGrpcService::getPostById,
-        (e) ->
+        e ->
             MGetPostByIdResponse.newBuilder()
                 .setSuccess(false)
                 .setError(GrpcServerUtils.getError(e))

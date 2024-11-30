@@ -6,11 +6,14 @@ import com.blog.gateway.payload.response.Response;
 import com.blog.gateway.payload.response.account.UserDTO;
 import com.daile.blog.account.ListUserResponse;
 import java.util.UUID;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * @author daile
  * @since 02/06/2024
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserGrpcClientConvertor extends BaseResponse {
   public static Response<Page<UserDTO>> asSuccessResponse(ListUserResponse.Data data) {
     return Response.<Page<UserDTO>>newBuilder()

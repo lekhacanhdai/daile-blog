@@ -1,6 +1,7 @@
 package com.blog.gateway.controller.accounts;
 
 import com.blog.gateway.grpc.client.account.UserGrpcClientService;
+import com.blog.gateway.grpc.convertor.BaseResponse;
 import com.blog.gateway.grpc.convertor.ErrorConvertor;
 import com.blog.gateway.grpc.convertor.account.UserGrpcClientConvertor;
 import com.blog.gateway.payload.request.account.ListUserRequest;
@@ -25,7 +26,7 @@ public class UserController {
   public Response<IdDTO> userRegistration(@RequestBody UserRegistrationRequest request) {
     var grpcRes = userGrpcClientService.userRegistration(request);
     if (grpcRes.getSuccess()) {
-      return UserGrpcClientConvertor.asSuccessResponse(grpcRes.getData());
+      return BaseResponse.asSuccessResponse(grpcRes.getData());
     } else {
       return ErrorConvertor.asErrorResponse(grpcRes.getError());
     }

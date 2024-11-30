@@ -25,7 +25,7 @@ public class FileGrpcClientServiceImpl implements FileGrpcClientService {
     try {
       fileData = ByteString.copyFrom(file.getBytes());
     } catch (IOException e) {
-      throw new RuntimeException("Failed to convert file to byte array", e);
+      throw new IllegalStateException("Failed to convert file to byte array", e);
     }
     return fileServiceBlockingStub.uploadFile(
         UploadFileRequest.newBuilder()

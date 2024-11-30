@@ -22,18 +22,9 @@ public class SecurityConfig {
     http.csrf(AbstractHttpConfigurer::disable) // TODO: research csrf
         .authorizeHttpRequests(
             auth ->
-                auth.requestMatchers(
-                        HttpMethod.GET, "/**"
-                        //                                "/public/**",
-                        //                                "/swagger-ui/**",
-                        //                                "/v3/api-docs/**",
-                        //                                "/v3/api-docs.yaml"
-                        )
+                auth.requestMatchers(HttpMethod.GET, "/**")
                     .permitAll()
-                    .requestMatchers(
-                        HttpMethod.POST, "/**", "/posts"
-                        //                                "/files"
-                        )
+                    .requestMatchers(HttpMethod.POST, "/**", "/posts")
                     .permitAll()
                     .anyRequest()
                     .authenticated())
@@ -54,13 +45,4 @@ public class SecurityConfig {
                     }));
     return http.build();
   }
-  /*
-  private Converter<Jwt, AbstractAuthenticationToken> jwtAuthenticationConvertor(){
-      JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-      grantedAuthoritiesConverter.setAuthorityPrefix(""); // prefix is so importance (role or scope). I'm wrong many times and spend time.
-      grantedAuthoritiesConverter.setAuthoritiesClaimName("roles");
-      JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
-      converter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
-      return converter;
-  } */
 }

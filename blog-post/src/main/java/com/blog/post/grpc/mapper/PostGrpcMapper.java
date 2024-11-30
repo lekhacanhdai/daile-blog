@@ -47,7 +47,7 @@ public class PostGrpcMapper extends GrpcMapper<PostEntity, MPost, MPost.Builder>
     return inputs.stream().map(i -> toGrpc(i, userMap.get(i.getUserId()))).toList();
   }
 
-  public MPost toGrpc(PostEntity input, CdcUserEntity user, List<PostTagEntity> postTag) {
+  public MPost toGrpc(PostEntity input, List<PostTagEntity> postTag) {
     return toGrpcBuilder(input)
         .addAllTags(
             postTag.stream()
