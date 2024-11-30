@@ -38,8 +38,6 @@ public abstract class CdcEventConsumer<
           "Failure when convert cdc event from topic {}. {}",
           receivedRecord.topic(),
           e.getMessage());
-      //noinspection CallToPrintStackTrace
-      e.printStackTrace();
     }
   }
 

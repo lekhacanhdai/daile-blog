@@ -6,11 +6,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * @author daile
  * @since 22/06/2024
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BlogPrincipalProvider {
   public static BlogCallCredentials asGrpcCredentials(BlogPrincipal principal) {
     return new BlogCallCredentials(principal);

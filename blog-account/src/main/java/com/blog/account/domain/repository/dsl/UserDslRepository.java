@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class UserDslRepository {
   private final JPAQueryFactory queryFactory;
-  private final QUserEntity user = QUserEntity.userEntity;
+  private static final QUserEntity user = QUserEntity.userEntity;
 
   public Page<UserEntity> listUser(ListUserRequest request) {
     var page = PageableUtils.getPage(request.getPageable().getPage());

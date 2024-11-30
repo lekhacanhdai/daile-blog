@@ -15,7 +15,7 @@ public class AccountGrpcStub {
 
   @Bean
   public UserGrpcServiceGrpc.UserGrpcServiceBlockingStub userGrpcServiceBlockingStub(
-      @Qualifier("AccountGrpcChannel") ManagedChannel channel) {
+      @Qualifier("accountGrpcChannel") ManagedChannel channel) {
     return UserGrpcServiceGrpc.newBlockingStub(channel);
   }
 }

@@ -64,14 +64,13 @@ public class PostGrpcServiceImpl implements PostGrpcService {
         postRepository
             .findById(request.getId().transform(UUID::fromString))
             .orElseThrow(() -> new GrpcNotFoundException("Not found post"));
-    var user = userRepository.findById(post.getUserId()).orElse(new CdcUserEntity());
     var postTag = postTagRepository.findAllByPostId(post.getPostId());
 
     return MGetPostByIdResponse.newBuilder()
         .setSuccess(true)
         .setData(
             MGetPostByIdResponse.Data.newBuilder()
-                .setPost(postGrpcMapper.toGrpc(post, user, postTag))
+                .setPost(postGrpcMapper.toGrpc(post, postTag))
                 .build())
         .build();
   }

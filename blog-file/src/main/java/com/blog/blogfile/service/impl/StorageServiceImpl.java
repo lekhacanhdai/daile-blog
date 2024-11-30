@@ -7,6 +7,7 @@ import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import java.io.ByteArrayInputStream;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class StorageServiceImpl implements StorageService {
   private final MinioClient minioClient;
   private final Environment environment;
@@ -37,7 +39,7 @@ public class StorageServiceImpl implements StorageService {
           .setData(UploadFileResponse.Data.newBuilder().setPath(res.object()).build())
           .build();
     } catch (Exception e) {
-      throw new RuntimeException("Error occurred: " + e.getMessage());
+      throw new IllegalArgumentException(e);
     }
   }
 

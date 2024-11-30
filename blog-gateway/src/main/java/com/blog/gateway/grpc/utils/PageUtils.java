@@ -1,12 +1,15 @@
 package com.blog.gateway.grpc.utils;
 
 import com.daile.blog.common.PageableRequest;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author daile
  * @since 02/06/2024
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PageUtils {
   public static PageableRequest toGrpcPageable(
       com.blog.gateway.payload.request.PageableRequest request) {

@@ -25,7 +25,7 @@ public class StorageGrpcServer extends FileServiceGrpc.FileServiceImplBase {
         request,
         responseObserver,
         storageService::uploadFile,
-        (e) ->
+        e ->
             UploadFileResponse.newBuilder()
                 .setSuccess(false)
                 .setError(GrpcServerUtils.getError(e))

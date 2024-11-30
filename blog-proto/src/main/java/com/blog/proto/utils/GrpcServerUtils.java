@@ -4,17 +4,20 @@ import com.daile.blog.common.Code;
 import com.daile.blog.common.GrpcError;
 import io.grpc.stub.StreamObserver;
 import java.util.function.Function;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * @author daile
  * @since 26/05/2024
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GrpcServerUtils {
-  public static <Req, Res> void execute(
-      Req request,
-      StreamObserver<Res> streamObserver,
-      Function<Req, Res> handler,
-      Function<Exception, Res> exceptionHandler) {
+  public static <R, S> void execute(
+      R request,
+      StreamObserver<S> streamObserver,
+      Function<R, S> handler,
+      Function<Exception, S> exceptionHandler) {
     try {
       streamObserver.onNext(handler.apply(request));
       streamObserver.onCompleted();

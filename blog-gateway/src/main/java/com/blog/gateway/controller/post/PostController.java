@@ -1,6 +1,7 @@
 package com.blog.gateway.controller.post;
 
 import com.blog.gateway.grpc.client.post.PostGrpcClientService;
+import com.blog.gateway.grpc.convertor.BaseResponse;
 import com.blog.gateway.grpc.convertor.ErrorConvertor;
 import com.blog.gateway.grpc.convertor.post.PostGrpcClientConvertor;
 import com.blog.gateway.payload.request.post.CreatePostRequest;
@@ -35,7 +36,7 @@ public class PostController {
   public Response<IdDTO> createPost(@RequestBody CreatePostRequest request) {
     var grpcRes = postGrpcClientService.createPost(request);
     if (grpcRes.getSuccess()) {
-      return PostGrpcClientConvertor.asSuccessResponse(grpcRes.getData());
+      return BaseResponse.asSuccessResponse(grpcRes.getData());
     }
     return ErrorConvertor.asErrorResponse(grpcRes.getError());
   }

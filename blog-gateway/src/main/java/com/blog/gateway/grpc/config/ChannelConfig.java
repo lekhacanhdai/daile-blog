@@ -16,7 +16,7 @@ import org.springframework.core.env.Environment;
 public class ChannelConfig {
   private final Environment environment;
 
-  @Bean("AccountGrpcChannel")
+  @Bean("accountGrpcChannel")
   public ManagedChannel accountGrpcChannel() {
     return ManagedChannelBuilder.forAddress(
             environment.getRequiredProperty("grpc.account.host", String.class),
@@ -25,7 +25,7 @@ public class ChannelConfig {
         .build();
   }
 
-  @Bean("PostGrpcChannel")
+  @Bean("postGrpcChannel")
   public ManagedChannel postGrpcChannel() {
     return ManagedChannelBuilder.forAddress(
             environment.getRequiredProperty("grpc.post.host", String.class),
@@ -34,7 +34,7 @@ public class ChannelConfig {
         .build();
   }
 
-  @Bean("FileGrpcChannel")
+  @Bean("fileGrpcChannel")
   public ManagedChannel fileGrpcChannel() {
     return ManagedChannelBuilder.forAddress(
             environment.getRequiredProperty("grpc.file.host", String.class),

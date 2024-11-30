@@ -3,11 +3,14 @@ package com.blog.proto.utils;
 import com.daile.blog.common.PageableRequest;
 import com.daile.blog.common.PageableResponse;
 import com.querydsl.core.types.Order;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * @author daile
  * @since 02/06/2024
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PageableUtils {
   public static long getSize(Long size) {
     return (size != null) && (size > 0) ? size : 100;

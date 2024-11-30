@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class PostGrpcStub {
   @Bean
   public PostGrpcServiceGrpc.PostGrpcServiceBlockingStub postGrpcServiceBlockingStub(
-      @Qualifier("PostGrpcChannel") ManagedChannel channel) {
+      @Qualifier("postGrpcChannel") ManagedChannel channel) {
     return PostGrpcServiceGrpc.newBlockingStub(channel);
   }
 }

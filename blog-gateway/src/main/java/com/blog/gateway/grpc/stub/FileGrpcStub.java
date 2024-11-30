@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class FileGrpcStub {
   @Bean
   public FileServiceGrpc.FileServiceBlockingStub fileServiceBlockingStub(
-      @Qualifier("FileGrpcChannel") ManagedChannel channel) {
+      @Qualifier("fileGrpcChannel") ManagedChannel channel) {
     return FileServiceGrpc.newBlockingStub(channel);
   }
 }
