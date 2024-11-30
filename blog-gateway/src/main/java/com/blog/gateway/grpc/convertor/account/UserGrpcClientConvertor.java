@@ -15,13 +15,13 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserGrpcClientConvertor extends BaseResponse {
-  public static Response<Page<UserDTO>> asSuccessResponse(ListUserResponse.Data DATA) {
+  public static Response<Page<UserDTO>> asSuccessResponse(ListUserResponse.Data data) {
     return Response.<Page<UserDTO>>newBuilder()
         .setSuccess(true)
         .setData(
             Page.<UserDTO>newBuilder()
                 .setItems(
-                    DATA.getUsersList().stream()
+                    data.getUsersList().stream()
                         .map(
                             user ->
                                 UserDTO.newBuilder()
@@ -31,8 +31,8 @@ public class UserGrpcClientConvertor extends BaseResponse {
                                     .setUsername(user.getUsername())
                                     .build())
                         .toList())
-                .setTotalElement(DATA.getPageable().getTotalElements())
-                .setTotalPage(DATA.getPageable().getTotalPages())
+                .setTotalElement(data.getPageable().getTotalElements())
+                .setTotalPage(data.getPageable().getTotalPages())
                 .build())
         .build();
   }
